@@ -1,0 +1,20 @@
+
+<div class="loading-overlay" *ngIf="loading">
+  <md-spinner></md-spinner>
+</div>
+
+<div class="well site-detail">
+  <div class="media">
+    <div class="pull-left">
+      <img class="media-object" src="{{data?.owner.avatar_url}}" height="150" width="150">
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{data?.name}}</h4>
+      <p class="text-right">{{data?.owner.login}}</p>
+      Created at : {{ data?.created_at }}<br>
+      Updated at : {{ data?.updated_at }}<br><br>
+      <p>{{data?.description}}</p>
+
+      </div>
+    </div>
+  </div>

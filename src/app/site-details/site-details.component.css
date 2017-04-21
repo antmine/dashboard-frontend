@@ -1,0 +1,17 @@
+.loading-overlay{
+  position:absolute;
+  display: table;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+.site-detail{
+  margin: 15px;
+}
+
+.mat-spinner{
+  height: 100%;
+  display: table;
+  margin: auto auto;
+}

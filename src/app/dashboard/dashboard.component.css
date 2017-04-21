@@ -1,0 +1,18 @@
+.example-scrolling-content {
+  overflow: auto;
+}
+
+.example-fab {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.dashboard-panel{
+  padding:0;
+  margin: 10px;
+}
