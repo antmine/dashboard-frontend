@@ -2,7 +2,7 @@
 
 
 <br>
-<div *ngIf="error">Code error {{error?.code}} : {{error?.path}}</div>
+<div *ngIf="error != null">Code error {{error?.code}} : {{error?.path}}</div>
 <br>
 <form (ngSubmit)="onSubmit()" #signupForm="ngForm" class="example-form">
   <p>
