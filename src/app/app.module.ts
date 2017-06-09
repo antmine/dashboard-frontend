@@ -14,6 +14,7 @@ import { DashboardComponent }          from './dashboard/dashboard.component';
 import { DashboardBrowsersComponent } from './dashboard-browsers/dashboard-browsers.component';
 import { DashboardIncomeComponent } from './dashboard-income/dashboard-income.component';
 import { SiteDetailsComponent } from './site-details/site-details.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SiteDetailsComponent } from './site-details/site-details.component';
     DashboardComponent,
     DashboardBrowsersComponent,
     DashboardIncomeComponent,
-    SiteDetailsComponent
+    SiteDetailsComponent,
+      ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +31,9 @@ import { SiteDetailsComponent } from './site-details/site-details.component';
     HttpModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     ChartsModule
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

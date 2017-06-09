@@ -1,0 +1,40 @@
+.container-group {
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3%;
+}
+
+h2 {
+    margin-bottom: 2%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+label {
+    width: 100%;
+}
+
+.form-field {
+    width: 50%;
+    height: 40px;
+    border-radius:         3px;
+    -moz-border-radius:    3px;
+    -webkit-border-radius: 3px;
+    border: 1px solid #dee3e4;
+    padding: 3px 12px;
+    margin: 6px 0;
+    box-shadow: none;
+}
+
+
+.crypto-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox {
+    margin: 2% 2% 2% 2%;
+}
