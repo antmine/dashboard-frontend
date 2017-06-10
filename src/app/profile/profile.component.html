@@ -3,24 +3,48 @@
 
     <div class="container-group">
         <h2>Informations profil :</h2>
-        <div class="form-line">
-            <input type="text" class="form-field" id="nom" placeholder="Nom">
-        </div>
+        <button id="edit-button" (click)="triggerEdit()">edit</button>
+        <div id="info-container">
+            <div class="form-line">
+                <input disabled type="text" class="form-field" id="nom" placeholder="Nom">
+                {{model.name}}
+            </div>
 
-        <div class="form-line">
-            <input type="text" class="form-field" id="prenom" placeholder="Prénom">
-        </div>
+            <div class="form-line">
+                <input disabled type="text" class="form-field" id="prenom" placeholder="Prénom">
+            </div>
 
-        <div class="form-line">
-            <input type="text" class="form-field" id="email" placeholder="E-mail">
-        </div>
+            <div class="form-line">
+                <input disabled type="text" class="form-field" id="email" placeholder="E-mail">
+            </div>
 
-        <div class="form-line">
-            <input type="text" class="form-field" id="adresse" placeholder="Adresse">
+            <div class="form-line">
+                <input disabled type="text" class="form-field" id="adresse" placeholder="Adresse">
+            </div>
         </div>
+        <div id="info-form" class="hidden">
+            <form (ngSubmit)="onEditInfo()">
+                <div class="form-line">
+                    <input type="text" class="form-field" id="nom" placeholder="Nom">
+                </div>
 
-        <div class="form-line">
-            <input type="text" class="form-field" id="mot-de-passe" placeholder="Mot de passe">
+                <div class="form-line">
+                    <input type="text" class="form-field" id="prenom" placeholder="Prénom">
+                </div>
+
+                <div class="form-line">
+                    <input type="email" class="form-field" id="email" placeholder="E-mail">
+                </div>
+
+                <div class="form-line">
+                    <input type="text" class="form-field" id="adresse" placeholder="Adresse">
+                </div>
+
+                <div class="form-line">
+                    <input type="password" class="form-field" id="mot-de-passe" placeholder="Mot de passe">
+                </div>
+                <button id="submit" type="sumbit">submit</button>
+            </form>
         </div>
     </div>
     <div class="container-group">
@@ -28,7 +52,7 @@
         <h3>Cryptomonnaie disponibles</h3>
         <ul id="crypto-checkboxes-group">
             <li class="crypto-checkbox">
-                   <input type="checkbox" class="checkbox">Bitcoin
+                <input type="checkbox" class="checkbox">Bitcoin
             </li>
             <li class="crypto-checkbox">
                 <input type="checkbox" class="checkbox">Etherium

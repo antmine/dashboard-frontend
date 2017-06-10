@@ -38,3 +38,7 @@ label {
 .checkbox {
     margin: 2% 2% 2% 2%;
 }
+
+.hidden {
+    display: none;
+}
