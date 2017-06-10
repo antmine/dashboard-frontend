@@ -6,42 +6,67 @@
         <button id="edit-button" (click)="triggerEdit()">edit</button>
         <div id="info-container">
             <div class="form-line">
-                <input disabled type="text" class="form-field" id="nom" placeholder="Nom">
+                <input disabled type="text" class="form-field" id="name" placeholder="Name">
                 {{model.name}}
             </div>
 
             <div class="form-line">
-                <input disabled type="text" class="form-field" id="prenom" placeholder="Prénom">
+                <input disabled type="text" class="form-field" id="lastname" placeholder="Lastname">
+            </div>
+            <div class="form-line">
+                <input disabled type="date" class="form-field" id="birthday" placeholder="Birthday">
             </div>
 
             <div class="form-line">
-                <input disabled type="text" class="form-field" id="email" placeholder="E-mail">
+                <input disabled type="email" class="form-field" id="email" placeholder="E-mail">
             </div>
-
+            <h5>Address :</h5>
             <div class="form-line">
-                <input disabled type="text" class="form-field" id="adresse" placeholder="Adresse">
+                <input disabled type="text" class="form-field" id="street" placeholder="Street">
+            </div>
+            <div class="form-line">
+                <input disabled type="text" class="form-field" id="city" placeholder="City">
+            </div>
+            <div class="form-line">
+                <input disabled type="text" class="form-field" id="zip-code" placeholder="ZIP">
+            </div>
+            <div class="form-line">
+                <input disabled type="text" class="form-field" id="country" placeholder="Country">
             </div>
         </div>
         <div id="info-form" class="hidden">
             <form (ngSubmit)="onEditInfo()">
                 <div class="form-line">
-                    <input type="text" class="form-field" id="nom" placeholder="Nom">
+                    <input type="text" class="form-field" id="name" placeholder="Name">
                 </div>
 
                 <div class="form-line">
-                    <input type="text" class="form-field" id="prenom" placeholder="Prénom">
+                    <input type="text" class="form-field" id="lastname" placeholder="Lastname">
+                </div>
+                <div class="form-line">
+                    <input type="date" class="form-field" id="birthday" placeholder="Birthday">
                 </div>
 
                 <div class="form-line">
                     <input type="email" class="form-field" id="email" placeholder="E-mail">
                 </div>
-
                 <div class="form-line">
-                    <input type="text" class="form-field" id="adresse" placeholder="Adresse">
+                    <input type="password" class="form-field" id="mot-de-passe" placeholder="Mot de passe">
+                </div>
+
+                <h5>Address :</h5>
+                <div class="form-line">
+                    <input type="text" class="form-field" id="street" placeholder="Street">
+                </div>
+                <div class="form-line">
+                    <input type="text" class="form-field" id="city" placeholder="City">
+                </div>
+                <div class="form-line">
+                    <input type="text" class="form-field" id="zip-code" placeholder="ZIP">
                 </div>
 
                 <div class="form-line">
-                    <input type="password" class="form-field" id="mot-de-passe" placeholder="Mot de passe">
+                    <input type="text" class="form-field" id="country" placeholder="Country">
                 </div>
                 <button id="submit" type="sumbit">submit</button>
             </form>
