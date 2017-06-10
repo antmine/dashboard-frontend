@@ -14,7 +14,7 @@ import { Client }    from '../models/client';
 })
 export class SignupComponent implements OnInit {
 
-  model = new Client("francois", "de Bellescize", "frdebellescize@hotmail.fr", "1995-02-09", "azerty", "10 rue primatice", "Paris", "75013", "France");
+  model = new Client();
   error = null;
 
   constructor(private http: Http) { }
@@ -37,10 +37,7 @@ export class SignupComponent implements OnInit {
         "COUNTRY" : this.model.country
       }
     };
-    this.create(data)
-                 .subscribe(
-                   result  => this.error = result,
-                   error =>  this.error = error);
+    this.create(data).subscribe(this.test, error =>  this.error = error);
   }
 
 get diagnostic() { return JSON.stringify(this.model); }
@@ -52,11 +49,15 @@ create(data): Observable<Client> {
   return this.http.post(url, data, options).map(this.extractData).catch(this.handleError);
 }
 
+private test(client: Client){
+  console.log("Client " + client.email + " added");
+}
+
 private extractData(res: Response) {
+  console.log("Signup OK")
   return res.json().data || { };
 }
 private handleError (error: Response | any) {
-  // In a real world app, you might use a remote logging infrastructure
   let errMsg;
   if (error instanceof Response) {
     const body = error.json() || '';
