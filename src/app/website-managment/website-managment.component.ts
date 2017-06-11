@@ -1,4 +1,8 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Headers, Http } from '@angular/http';
+import { MaterialModule } from '@angular/material';
+import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+
 
 @Component({
     selector: 'app-websiteManagment',
@@ -7,7 +11,17 @@ import { Component, OnInit, Injectable } from '@angular/core';
 })
 export class WebsiteManagmentComponent implements OnInit {
 
-    constructor() {}
+    public data;
+
+    constructor(private http: Http) {
+        this.http.get("https://back.dashboard.antmine.io/website")
+            .map(response => response.json()).subscribe((res) =>{
+                this.data = res;
+            },
+            (err) => console.log(err),
+            () => {}
+        );
+    }
 
     ngOnInit() {
     }

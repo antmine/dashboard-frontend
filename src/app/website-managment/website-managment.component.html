@@ -1,3 +1,14 @@
+
+<h3>websites managment</h3>
 <div class="website-container">
-    <h3>websites managment</h3>
+    <h4>websites :</h4>
+    <div id="website-array">
+        <ul class="website-list" *ngFor="let row of data">
+            <li class="website-field">
+                <p class="website-name"> row.url</p>
+                <button id="website-delete">X</button>
+            </li>
+        </ul>
+        <button id="website-add">Add website</button>
+    </div>
 </div>
