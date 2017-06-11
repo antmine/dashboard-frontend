@@ -16,6 +16,7 @@ import { DashboardIncomeComponent } from './dashboard-income/dashboard-income.co
 import { SiteDetailsComponent } from './site-details/site-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
+import { WebsiteManagmentComponent } from './website-managment/website-managment.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SignupComponent } from './signup/signup.component';
     DashboardIncomeComponent,
     SiteDetailsComponent,
     ProfileComponent,
-    SignupComponent
+    SignupComponent,
+    WebsiteManagmentComponent,
   ],
   imports: [
     BrowserModule,
