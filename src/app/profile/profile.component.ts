@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {RequestOptions, Request, RequestMethod, Headers, Http, Response, RequestOptionsArgs} from '@angular/http';
-import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import {RequestOptions,Headers, Http, Response} from '@angular/http';
 
-import { Client } from '../models/client';
+import 'rxjs/add/operator/toPromise';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'app-profile',
@@ -12,21 +14,24 @@ import { Client } from '../models/client';
 
 export class ProfileComponent implements OnInit {
 
-    model = new Client();
+    clientInfo;
 
-    constructor(private http: Http, private router: Router) {
-        this.http.get("http://back.dashboard.antmine.io/client")
+    constructor(private http: Http) {
+
+    }
+
+    ngOnInit() {
+        let url = "http://back.dashboard.antmine.io/client";
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+        this.http.get(url, options)
             .map(response => response.json()).subscribe((res) =>{
-                console.log(res);
-                this.model = res;
-                alert(this.model.name);
+                this.clientInfo = res;
             },
-            (err) => console.log('request error: ' + err),
+            (err) => console.log('GET request error: ' + err),
             () => {}
         );
     }
-
-    ngOnInit() {}
 
     onEditInfo() {
         var data = {
@@ -43,14 +48,13 @@ export class ProfileComponent implements OnInit {
             }
         }
         this.triggerEdit();
-        this.http.put("http://back.dashboard.antmine.io/client", data)
-            .map(response => response.json()).subscribe((res) =>{
-                console.log(res);
-                alert("edited")
-            },
-            (err) => console.log('request error: ' + err),
-            () => {}
-        );
+        let url = "http://back.dashboard.antmine.io/client";
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+        this.http.put(url, data, options)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
     }
 
     triggerEdit() {
@@ -66,6 +70,23 @@ export class ProfileComponent implements OnInit {
         else {
             z.textContent = "unedit";
         }
+    }
+
+    private extractData(res: Response) {
+        console.log("Edit OK")
+        return res|| { };
+    }
+
+    private handleError (error: Response | any) {
+        let errMsg;
+        if (error instanceof Response) {
+            const body = error.json() || '';
+            console.log(body);
+            errMsg = body;
+        } else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        return Observable.throw(errMsg);
     }
 }
 

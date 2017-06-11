@@ -5,29 +5,29 @@
         <button id="edit-button" (click)="triggerEdit()">edit</button>
         <div id="info-container">
             <div class="form-line">
-                <input disabled type="text" class="form-field" placeholder="Name" value="{{model.name}}">
+                <input disabled type="text" class="form-field" placeholder="Name" value={{clientInfo?.NAME}}>
             </div>
             <div class="form-line">
-                <input disabled type="text" class="form-field" placeholder="Lastname" value="{{model.lastname}}">
+                <input disabled type="text" class="form-field" placeholder="Lastname" value={{clientInfo?.LASTNAME}}>
             </div>
             <div class="form-line">
-                <input disabled type="date" class="form-field" placeholder="Birthday" value="{{model.birthday}}">
+                <input disabled type="date" class="form-field" placeholder="Birthday" value={{clientInfo?.DATE_BIRTHDAY}}>
             </div>
             <div class="form-line">
-                <input disabled type="email" class="form-field" placeholder="E-mail" value="{{model.email}}">
+                <input disabled type="email" class="form-field" placeholder="E-mail" value={{clientInfo?.EMAIL_ADDRESS}}>
             </div>
             <h5>Address :</h5>
             <div class="form-line">
-                <input disabled type="text" class="form-field" placeholder="Street" value="{{model.street}}">
+                <input disabled type="text" class="form-field" placeholder="Street" value={{clientInfo?.ADDRESS?.STREET}}>
             </div>
             <div class="form-line">
-                <input disabled type="text" class="form-field" placeholder="City" value="{{model.city}}">
+                <input disabled type="text" class="form-field" placeholder="City" value={{clientInfo?.ADDRESS?.CITY}}>
             </div>
             <div class="form-line">
-                <input disabled type="text" class="form-field" placeholder="ZIP" value="{{model.zip_code}}">
+                <input disabled type="text" class="form-field" placeholder="ZIP" value={{clientInfo?.ADDRESS?.ZIP_CODE}}>
             </div>
             <div class="form-line">
-                <input disabled type="text" class="form-field" placeholder="Country" value="{{model.country}}">
+                <input disabled type="text" class="form-field" placeholder="Country" value={{clientInfo?.ADDRESS?.COUNTRY}}>
             </div>
         </div>
         <div id="info-form" class="hidden">
