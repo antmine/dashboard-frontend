@@ -17,6 +17,7 @@ import { SiteDetailsComponent } from './site-details/site-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { WebsiteManagmentComponent } from './website-managment/website-managment.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { WebsiteManagmentComponent } from './website-managment/website-managment
     ProfileComponent,
     SignupComponent,
     WebsiteManagmentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

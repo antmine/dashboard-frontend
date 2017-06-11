@@ -1,14 +1,31 @@
 
 <h3>websites managment</h3>
-<div class="website-container">
+<div class="websites-container">
     <h4>websites :</h4>
     <div id="website-array">
         <ul class="website-list" *ngFor="let row of data">
             <li class="website-field">
-                <p class="website-name"> row.url</p>
-                <button id="website-delete">X</button>
+                <p class="website-name" (click)="displayWebsite(row)">{{row.URL}}</p>
+                <button id="website-delete" (click)="deleteWebsite(row)">X</button>
             </li>
         </ul>
-        <button id="website-add">Add website</button>
+        <a [routerLink]="['/website/add']">
+            <button id="website-add" >Add</button>
+        </a>
+    </div>
+    <div id="website-container">
+        <h4>website detail: </h4>
+        <h5>Name:</h5>
+        <input disabled value={{dataSpecificWebsite?.NAME}}>
+        <h5>Url : </h5>
+        <input disabled value={{dataSpecificWebsite?.URL}}>
+        <h5>Id Website : </h5>
+        <input disabled value={{dataSpecificWebsite?.ID_WEBSITE}}>
+        <h5>Activity : </h5>
+        <input disabled value={{dataSpecificWebsite?.IS_ACTIVE}}>
+        <h5>ID crypto currency : </h5>
+        <input disabled value={{dataSpecificWebsite?.CRYPTO_CURRENCY_WEBSITEs[0].ID_CRYPTO}}>
+        <h5>crypto currency enabled : </h5>
+        <input disabled value={{dataSpecificWebsite?.CRYPTO_CURRENCY_WEBSITEs[0].IS_ENABLE}}>
     </div>
 </div>
