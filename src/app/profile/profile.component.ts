@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {RequestOptions, Request, RequestMethod, Headers, Http, Response, RequestOptionsArgs} from '@angular/http';
 import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 
@@ -9,25 +9,13 @@ import { Client } from '../models/client';
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
 
     model = new Client();
-    loading: boolean = true;
-    /*basicOptions:RequestOptionsArgs = {
-        url: 'https://back.dashboard.antmine.io/client',
-        method: RequestMethod.Get,
-        search: null,
-        headers: new Headers({'Cookies': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRF9DTElFTlQiOjQsImlhdCI6MTQ5NzAxOTQ0MywiZXhwIjo4Nzg5NzAxOTQ0M30.Q-YGRmzeo3yRbfOAR49ZEiPAO7uit5g2W8YGrhN7duk'}),
-        body: null
-    };*/
-
 
     constructor(private http: Http, private router: Router) {
-     /* this.router.events.subscribe((event: RouterEvent) => {
-            this.navigationInterceptor(event);
-        });
-
-        this.http.get("back.dashboard.antmine.io/client")
+        this.http.get("http://back.dashboard.antmine.io/client")
             .map(response => response.json()).subscribe((res) =>{
                 console.log(res);
                 this.model = res;
@@ -35,29 +23,34 @@ export class ProfileComponent implements OnInit {
             },
             (err) => console.log('request error: ' + err),
             () => {}
-        );*/
-
+        );
     }
 
-    ngOnInit() {
-
-    }
+    ngOnInit() {}
 
     onEditInfo() {
-        alert("edited");
         var data = {
-            "NAME" : this.model.name,
-            "LASTNAME" : this.model.lastname,
-            "EMAIL_ADDRESS" : this.model.email,
-            //"DATE_BIRTHDAY" : this.model.birthday,
-            "HASH_PASSWORD" : this.model.password,
-            /*"ADDRESS" : {
-             "STREET" : this.model.street,
-             "CITY" : this.model.city,
-             "ZIP_CODE" : this.model.zip_code,
-             "COUNTRY" : this.model.country
-             }*/
+            "NAME" : document.forms["edit-form"]["name"].value,
+            "LASTNAME" : document.forms["edit-form"]["lastname"].value,
+            "EMAIL_ADDRESS" : document.forms["edit-form"]["email"].value,
+            "DATE_BIRTHDAY" : document.forms["edit-form"]["birthday"].value,
+            "HASH_PASSWORD" : document.forms["edit-form"]["pwd"].value,
+            "ADDRESS" : {
+                "STREET" : document.forms["edit-form"]["street"].value,
+                "CITY" : document.forms["edit-form"]["city"].value,
+                "ZIP_CODE" : document.forms["edit-form"]["zip-code"].value,
+                "COUNTRY" : document.forms["edit-form"]["country"].value,
+            }
         }
+        this.triggerEdit();
+        this.http.put("http://back.dashboard.antmine.io/client", data)
+            .map(response => response.json()).subscribe((res) =>{
+                console.log(res);
+                alert("edited")
+            },
+            (err) => console.log('request error: ' + err),
+            () => {}
+        );
     }
 
     triggerEdit() {
@@ -74,23 +67,5 @@ export class ProfileComponent implements OnInit {
             z.textContent = "unedit";
         }
     }
-
-
-    navigationInterceptor(event: RouterEvent): void {
-        if (event instanceof NavigationStart) {
-            this.loading = true;
-        }
-        if (event instanceof NavigationEnd) {
-            this.loading = false;
-        }
-        // Set loading state to false in both of the below events to hide the spinner in case a request fails
-        if (event instanceof NavigationCancel) {
-            this.loading = false;
-        }
-        if (event instanceof NavigationError) {
-            this.loading = false;
-        }
-    }
-
 }
 
