@@ -19,6 +19,7 @@ import { SignupComponent } from './signup/signup.component';
 import { WebsiteManagmentComponent } from './website-managment/website-managment.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import {WebsiteManagmentAddComponent} from "./website-managment-add/website-managment-add.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LogoutComponent } from './logout/logout.component';
     SignupComponent,
     LoginComponent,
     LogoutComponent,
-    WebsiteManagmentComponent
+    WebsiteManagmentComponent,
+    WebsiteManagmentAddComponent
   ],
   imports: [
     BrowserModule,
