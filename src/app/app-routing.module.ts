@@ -6,6 +6,7 @@ import { SignupComponent }   from './signup/signup.component';
 import { ProfileComponent }       from './profile/profile.component';
 import { WebsiteManagmentComponent } from './website-managment/website-managment.component';
 import { LoginComponent }   from './login/login.component';
+import {WebsiteManagmentAddComponent} from "./website-managment-add/website-managment-add.component";
 
 const routes: Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
     { path: 'signup',  component: SignupComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'website', component: WebsiteManagmentComponent},
-    { path: 'login',  component: LoginComponent }
+    { path: 'login',  component: LoginComponent },
+    { path: 'website/add', component: WebsiteManagmentAddComponent}
 ];
 
 @NgModule({

@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { WebsiteManagmentComponent } from './website-managment/website-managment.component';
 import { LoginComponent } from './login/login.component';
+import {WebsiteManagmentAddComponent} from "./website-managment-add/website-managment-add.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LoginComponent } from './login/login.component';
     ProfileComponent,
     SignupComponent,
     WebsiteManagmentComponent,
-    LoginComponent
+    LoginComponent,
+    WebsiteManagmentAddComponent
   ],
   imports: [
     BrowserModule,
