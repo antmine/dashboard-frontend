@@ -1,72 +1,64 @@
 <div>
     <h1>Profil et préférences</h1>
-
     <div class="container-group">
         <h2>Informations profil :</h2>
         <button id="edit-button" (click)="triggerEdit()">edit</button>
         <div id="info-container">
             <div class="form-line">
-                <input disabled type="text" class="form-field" id="name" placeholder="Name">
-                {{model.name}}
-            </div>
-
-            <div class="form-line">
-                <input disabled type="text" class="form-field" id="lastname" placeholder="Lastname">
+                <input disabled type="text" class="form-field" placeholder="Name" value={{clientInfo?.NAME}}>
             </div>
             <div class="form-line">
-                <input disabled type="date" class="form-field" id="birthday" placeholder="Birthday">
+                <input disabled type="text" class="form-field" placeholder="Lastname" value={{clientInfo?.LASTNAME}}>
             </div>
-
             <div class="form-line">
-                <input disabled type="email" class="form-field" id="email" placeholder="E-mail">
+                <input disabled type="date" class="form-field" placeholder="Birthday" value={{clientInfo?.DATE_BIRTHDAY}}>
+            </div>
+            <div class="form-line">
+                <input disabled type="email" class="form-field" placeholder="E-mail" value={{clientInfo?.EMAIL_ADDRESS}}>
             </div>
             <h5>Address :</h5>
             <div class="form-line">
-                <input disabled type="text" class="form-field" id="street" placeholder="Street">
+                <input disabled type="text" class="form-field" placeholder="Street" value={{clientInfo?.ADDRESS?.STREET}}>
             </div>
             <div class="form-line">
-                <input disabled type="text" class="form-field" id="city" placeholder="City">
+                <input disabled type="text" class="form-field" placeholder="City" value={{clientInfo?.ADDRESS?.CITY}}>
             </div>
             <div class="form-line">
-                <input disabled type="text" class="form-field" id="zip-code" placeholder="ZIP">
+                <input disabled type="text" class="form-field" placeholder="ZIP" value={{clientInfo?.ADDRESS?.ZIP_CODE}}>
             </div>
             <div class="form-line">
-                <input disabled type="text" class="form-field" id="country" placeholder="Country">
+                <input disabled type="text" class="form-field" placeholder="Country" value={{clientInfo?.ADDRESS?.COUNTRY}}>
             </div>
         </div>
         <div id="info-form" class="hidden">
-            <form (ngSubmit)="onEditInfo()">
+            <form id="edit-form"(ngSubmit)="onEditInfo()">
                 <div class="form-line">
-                    <input type="text" class="form-field" id="name" placeholder="Name">
-                </div>
-
-                <div class="form-line">
-                    <input type="text" class="form-field" id="lastname" placeholder="Lastname">
+                    <input type="text" class="form-field" name="name" placeholder="Name">
                 </div>
                 <div class="form-line">
-                    <input type="date" class="form-field" id="birthday" placeholder="Birthday">
-                </div>
-
-                <div class="form-line">
-                    <input type="email" class="form-field" id="email" placeholder="E-mail">
+                    <input type="text" class="form-field" name="lastname" placeholder="Lastname">
                 </div>
                 <div class="form-line">
-                    <input type="password" class="form-field" id="mot-de-passe" placeholder="Mot de passe">
+                    <input type="date" class="form-field" name="birthday" placeholder="Birthday">
                 </div>
-
+                <div class="form-line">
+                    <input type="email" class="form-field" name="email" placeholder="E-mail">
+                </div>
+                <div class="form-line">
+                    <input type="password" class="form-field" name="pwd" placeholder="Password">
+                </div>
                 <h5>Address :</h5>
                 <div class="form-line">
-                    <input type="text" class="form-field" id="street" placeholder="Street">
+                    <input type="text" class="form-field" name="street" placeholder="Street">
                 </div>
                 <div class="form-line">
-                    <input type="text" class="form-field" id="city" placeholder="City">
+                    <input type="text" class="form-field" name="city" placeholder="City">
                 </div>
                 <div class="form-line">
-                    <input type="text" class="form-field" id="zip-code" placeholder="ZIP">
+                    <input type="text" class="form-field" name="zip-code" placeholder="ZIP">
                 </div>
-
                 <div class="form-line">
-                    <input type="text" class="form-field" id="country" placeholder="Country">
+                    <input type="text" class="form-field" name="country" placeholder="Country">
                 </div>
                 <button id="submit" type="sumbit">submit</button>
             </form>

@@ -1,63 +1,60 @@
-import { Component, OnInit, Injector } from '@angular/core';
-import {RequestOptions, Request, RequestMethod, Headers, Http, Response, RequestOptionsArgs} from '@angular/http';
-import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import {RequestOptions,Headers, Http, Response} from '@angular/http';
 
-import { Client } from '../models/client';
+import 'rxjs/add/operator/toPromise';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
 
-    model = new Client();
-    loading: boolean = true;
-    /*basicOptions:RequestOptionsArgs = {
-        url: 'https://back.dashboard.antmine.io/client',
-        method: RequestMethod.Get,
-        search: null,
-        headers: new Headers({'Cookies': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRF9DTElFTlQiOjQsImlhdCI6MTQ5NzAxOTQ0MywiZXhwIjo4Nzg5NzAxOTQ0M30.Q-YGRmzeo3yRbfOAR49ZEiPAO7uit5g2W8YGrhN7duk'}),
-        body: null
-    };*/
+    clientInfo;
 
-
-    constructor(private http: Http, private router: Router) {
-     /* this.router.events.subscribe((event: RouterEvent) => {
-            this.navigationInterceptor(event);
-        });
-
-        this.http.get("back.dashboard.antmine.io/client")
-            .map(response => response.json()).subscribe((res) =>{
-                console.log(res);
-                this.model = res;
-                alert(this.model.name);
-            },
-            (err) => console.log('request error: ' + err),
-            () => {}
-        );*/
+    constructor(private http: Http) {
 
     }
 
     ngOnInit() {
-
+        let url = "http://back.dashboard.antmine.io/client";
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+        this.http.get(url, options)
+            .map(response => response.json()).subscribe((res) =>{
+                this.clientInfo = res;
+            },
+            (err) => console.log('GET request error: ' + err),
+            () => {}
+        );
     }
 
     onEditInfo() {
-        alert("edited");
         var data = {
-            "NAME" : this.model.name,
-            "LASTNAME" : this.model.lastname,
-            "EMAIL_ADDRESS" : this.model.email,
-            //"DATE_BIRTHDAY" : this.model.birthday,
-            "HASH_PASSWORD" : this.model.password,
-            /*"ADDRESS" : {
-             "STREET" : this.model.street,
-             "CITY" : this.model.city,
-             "ZIP_CODE" : this.model.zip_code,
-             "COUNTRY" : this.model.country
-             }*/
+            "NAME" : document.forms["edit-form"]["name"].value,
+            "LASTNAME" : document.forms["edit-form"]["lastname"].value,
+            "EMAIL_ADDRESS" : document.forms["edit-form"]["email"].value,
+            "DATE_BIRTHDAY" : document.forms["edit-form"]["birthday"].value,
+            "HASH_PASSWORD" : document.forms["edit-form"]["pwd"].value,
+            "ADDRESS" : {
+                "STREET" : document.forms["edit-form"]["street"].value,
+                "CITY" : document.forms["edit-form"]["city"].value,
+                "ZIP_CODE" : document.forms["edit-form"]["zip-code"].value,
+                "COUNTRY" : document.forms["edit-form"]["country"].value,
+            }
         }
+        this.triggerEdit();
+        let url = "http://back.dashboard.antmine.io/client";
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+        this.http.put(url, data, options)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
     }
 
     triggerEdit() {
@@ -75,22 +72,21 @@ export class ProfileComponent implements OnInit {
         }
     }
 
-
-    navigationInterceptor(event: RouterEvent): void {
-        if (event instanceof NavigationStart) {
-            this.loading = true;
-        }
-        if (event instanceof NavigationEnd) {
-            this.loading = false;
-        }
-        // Set loading state to false in both of the below events to hide the spinner in case a request fails
-        if (event instanceof NavigationCancel) {
-            this.loading = false;
-        }
-        if (event instanceof NavigationError) {
-            this.loading = false;
-        }
+    private extractData(res: Response) {
+        console.log("Edit OK")
+        return res|| { };
     }
 
+    private handleError (error: Response | any) {
+        let errMsg;
+        if (error instanceof Response) {
+            const body = error.json() || '';
+            console.log(body);
+            errMsg = body;
+        } else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        return Observable.throw(errMsg);
+    }
 }
 
