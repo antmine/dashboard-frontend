@@ -11,7 +11,7 @@
                 <input disabled type="text" class="form-field" placeholder="Lastname" value={{clientInfo?.LASTNAME}}>
             </div>
             <div class="form-line">
-                <input disabled type="date" class="form-field" placeholder="Birthday" value={{clientInfo?.DATE_BIRTHDAY}}>
+                <input disabled type="date" class="form-field" placeholder="Birthday" value='{{ clientInfo?.DATE_BIRTHDAY | date: "yyyy-MM-dd"}}'>
             </div>
             <div class="form-line">
                 <input disabled type="email" class="form-field" placeholder="E-mail" value={{clientInfo?.EMAIL_ADDRESS}}>

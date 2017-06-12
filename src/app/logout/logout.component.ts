@@ -21,14 +21,14 @@ export class LogoutComponent implements OnInit {
   }
 
   logout(): Observable<JSON> {
-    let url = "http://localhost:3000/client/logout";
+    let url = "http://back.dashboard.antmine.io:80/client/logout";
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers, withCredentials: true });
     return this.http.post(url, {}, options).map(this.extractData).catch(this.handleError);
   }
 
   private extractData(res: Response) {
-    console.log("Logout OK")
+    console.log(res);
     return res;
   }
 

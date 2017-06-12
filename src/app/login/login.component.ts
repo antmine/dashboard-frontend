@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   private extractData(res: Response) {
-    console.log("Login OK")
+    console.log(res);
     return res.json().data || { };
   }
 
