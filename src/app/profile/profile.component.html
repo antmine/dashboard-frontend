@@ -1,0 +1,79 @@
+<div>
+    <h1>Profil et préférences</h1>
+    <div class="container-group">
+        <h2>Informations profil :</h2>
+        <button id="edit-button" (click)="triggerEdit()">edit</button>
+        <div id="info-container">
+            <div class="form-line">
+                <input disabled type="text" class="form-field" placeholder="Name" value={{clientInfo?.NAME}}>
+            </div>
+            <div class="form-line">
+                <input disabled type="text" class="form-field" placeholder="Lastname" value={{clientInfo?.LASTNAME}}>
+            </div>
+            <div class="form-line">
+                <input disabled type="date" class="form-field" placeholder="Birthday" value={{clientInfo?.DATE_BIRTHDAY}}>
+            </div>
+            <div class="form-line">
+                <input disabled type="email" class="form-field" placeholder="E-mail" value={{clientInfo?.EMAIL_ADDRESS}}>
+            </div>
+            <h5>Address :</h5>
+            <div class="form-line">
+                <input disabled type="text" class="form-field" placeholder="Street" value={{clientInfo?.ADDRESS?.STREET}}>
+            </div>
+            <div class="form-line">
+                <input disabled type="text" class="form-field" placeholder="City" value={{clientInfo?.ADDRESS?.CITY}}>
+            </div>
+            <div class="form-line">
+                <input disabled type="text" class="form-field" placeholder="ZIP" value={{clientInfo?.ADDRESS?.ZIP_CODE}}>
+            </div>
+            <div class="form-line">
+                <input disabled type="text" class="form-field" placeholder="Country" value={{clientInfo?.ADDRESS?.COUNTRY}}>
+            </div>
+        </div>
+        <div id="info-form" class="hidden">
+            <form id="edit-form"(ngSubmit)="onEditInfo()">
+                <div class="form-line">
+                    <input type="text" class="form-field" name="name" placeholder="Name">
+                </div>
+                <div class="form-line">
+                    <input type="text" class="form-field" name="lastname" placeholder="Lastname">
+                </div>
+                <div class="form-line">
+                    <input type="date" class="form-field" name="birthday" placeholder="Birthday">
+                </div>
+                <div class="form-line">
+                    <input type="email" class="form-field" name="email" placeholder="E-mail">
+                </div>
+                <div class="form-line">
+                    <input type="password" class="form-field" name="pwd" placeholder="Password">
+                </div>
+                <h5>Address :</h5>
+                <div class="form-line">
+                    <input type="text" class="form-field" name="street" placeholder="Street">
+                </div>
+                <div class="form-line">
+                    <input type="text" class="form-field" name="city" placeholder="City">
+                </div>
+                <div class="form-line">
+                    <input type="text" class="form-field" name="zip-code" placeholder="ZIP">
+                </div>
+                <div class="form-line">
+                    <input type="text" class="form-field" name="country" placeholder="Country">
+                </div>
+                <button id="submit" type="sumbit">submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="container-group">
+        <h2>Préférences :</h2>
+        <h3>Cryptomonnaie disponibles</h3>
+        <ul id="crypto-checkboxes-group">
+            <li class="crypto-checkbox">
+                <input type="checkbox" class="checkbox">Bitcoin
+            </li>
+            <li class="crypto-checkbox">
+                <input type="checkbox" class="checkbox">Etherium
+            </li>
+        </ul>
+    </div>
+</div>

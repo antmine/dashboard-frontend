@@ -26,6 +26,31 @@
     <md-sidenav #sidenav class="md-sidenav-left" mode="side" opened="true">
 
       <md-toolbar color="warm">
+        <h3 class="md-toolbar-tools">Gestion du compte</h3>
+      </md-toolbar>
+
+      <md-nav-list>
+        <a>
+          <md-list-item>
+            <md-icon md-list-icon>navigate_next</md-icon>
+            <h4 md-line>Solde et portefeuilles</h4>
+          </md-list-item>
+        </a>
+        <a>
+          <md-list-item>
+            <md-icon md-list-icon>navigate_next</md-icon>
+            <h4 md-line >Gestion site web</h4>
+          </md-list-item>
+        </a>
+        <a [routerLink]="['/profile']">
+          <md-list-item>
+            <md-icon md-list-icon>navigate_next</md-icon>
+            <h4 md-line>Profil et préferences</h4>
+          </md-list-item>
+        </a>
+      </md-nav-list>
+
+      <md-toolbar color="warm">
         <h3 class="md-toolbar-tools">Mes sites</h3>
       </md-toolbar>
 

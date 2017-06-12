@@ -14,6 +14,7 @@ import { DashboardComponent }          from './dashboard/dashboard.component';
 import { DashboardBrowsersComponent } from './dashboard-browsers/dashboard-browsers.component';
 import { DashboardIncomeComponent } from './dashboard-income/dashboard-income.component';
 import { SiteDetailsComponent } from './site-details/site-details.component';
+import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 
@@ -24,6 +25,7 @@ import { LoginComponent } from './login/login.component';
     DashboardBrowsersComponent,
     DashboardIncomeComponent,
     SiteDetailsComponent,
+    ProfileComponent,
     SignupComponent,
     LoginComponent
   ],
@@ -33,9 +35,9 @@ import { LoginComponent } from './login/login.component';
     HttpModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     ChartsModule
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
