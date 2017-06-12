@@ -4,15 +4,17 @@ import { DashboardComponent }   from './dashboard/dashboard.component';
 import { SiteDetailsComponent } from './site-details/site-details.component';
 import { SignupComponent }   from './signup/signup.component';
 import { ProfileComponent }       from './profile/profile.component';
+import { WebsiteManagmentComponent } from './website-managment/website-managment.component';
 import { LoginComponent }   from './login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard',  component: DashboardComponent },
-  { path: 'site/:owner/:id', component: SiteDetailsComponent },
-  { path: 'signup',  component: SignupComponent },
+    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+    { path: 'dashboard',  component: DashboardComponent },
+    { path: 'site/:owner/:id', component: SiteDetailsComponent },
+    { path: 'signup',  component: SignupComponent },
     { path: 'profile', component: ProfileComponent },
-  { path: 'login',  component: LoginComponent }
+    { path: 'website', component: WebsiteManagmentComponent},
+    { path: 'login',  component: LoginComponent }
 ];
 
 @NgModule({
