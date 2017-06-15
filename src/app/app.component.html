@@ -23,7 +23,7 @@
   </md-toolbar>
 
   <md-sidenav-container class="sidenav-container">
-    <md-sidenav #sidenav class="md-sidenav-left" mode="side" opened="true">
+    <md-sidenav #sidenav class="md-sidenav-left" mode="side" opened="false">
 
       <md-toolbar color="warm">
         <h3 class="md-toolbar-tools">Gestion du compte</h3>
@@ -49,21 +49,6 @@
           </md-list-item>
         </a>
       </md-nav-list>
-
-      <md-toolbar color="warm">
-        <h3 class="md-toolbar-tools">Mes sites</h3>
-      </md-toolbar>
-
-      <md-nav-list *ngFor="let row of data" no-lines>
-        <a [routerLink]="['/site', row.owner.login, row.name]">
-          <md-list-item>
-            <md-icon md-list-icon>navigate_next</md-icon>
-            <h4 md-line>{{ row.name }}</h4>
-            <p md-line>{{ row.description }}</p>
-          </md-list-item>
-        </a>
-      </md-nav-list>
-
     </md-sidenav>
 
     <div class="example-sidenav-content">
