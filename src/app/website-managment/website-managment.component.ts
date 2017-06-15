@@ -17,7 +17,7 @@ export class WebsiteManagmentComponent implements OnInit {
     public data;
     public dataSpecificWebsite;
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private router: Router) {
 
     }
 
@@ -57,7 +57,8 @@ export class WebsiteManagmentComponent implements OnInit {
     }
 
     private extractData(res: Response) {
-        return res|| { };
+        window.location.reload();
+        return res || { };
     }
 
     private handleError (error: Response | any) {
