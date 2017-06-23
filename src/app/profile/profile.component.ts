@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
         this.http.get(url, options)
             .map(response => response.json()).subscribe((res) =>{
                 this.clientInfo = res;
+                this.clientInfo.DATE_BIRTHDAY = new Date(this.clientInfo.DATE_BIRTHDAY);
             },
             (err) => console.log('GET request error: ' + err),
             () => {}
@@ -89,4 +90,3 @@ export class ProfileComponent implements OnInit {
         return Observable.throw(errMsg);
     }
 }
-
