@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit {
 get diagnostic() { return JSON.stringify(this.model); }
 
 create(data): Observable<Client> {
-  let url = "http://localhost:3000/client/signup";
+  let url = "http://back.dashboard.antmine.io:80/client/signup";
   let headers = new Headers({ 'Content-Type': 'application/json' });
   let options = new RequestOptions({ headers: headers });
   return this.http.post(url, data, options).map(this.extractData).catch(this.handleError);

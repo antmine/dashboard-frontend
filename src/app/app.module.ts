@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { WebsiteManagmentComponent } from './website-managment/website-managment.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 import {WebsiteManagmentAddComponent} from "./website-managment-add/website-managment-add.component";
 
 @NgModule({
@@ -29,8 +30,9 @@ import {WebsiteManagmentAddComponent} from "./website-managment-add/website-mana
     SiteDetailsComponent,
     ProfileComponent,
     SignupComponent,
-    WebsiteManagmentComponent,
     LoginComponent,
+    LogoutComponent,
+    WebsiteManagmentComponent,
     WebsiteManagmentAddComponent
   ],
   imports: [
