@@ -4,6 +4,7 @@ export class Site {
 	public url: string;
 	public currency: string;
 	public enable: boolean;
+	public script: string;
 
 	constructor() {}
 }
