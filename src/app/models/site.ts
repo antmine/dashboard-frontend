@@ -1,4 +1,5 @@
 export class Site {
+	public id: string;
 	public name: string;
 	public url: string;
 	public currency: string;
