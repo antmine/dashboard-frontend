@@ -1,0 +1,7 @@
+.login-form > p > md-input-container {
+	width: 100%;
+}
+
+.login-form > .submit-btn {
+	float: right;
+}
