@@ -19,7 +19,7 @@ export class WebsiteManagmentAddComponent implements OnInit {
 
 	currencies = [
 		{
-			id: 1,
+			id: "BTC",
 			name: "BitCoin"
 		}
 	];
@@ -29,6 +29,8 @@ export class WebsiteManagmentAddComponent implements OnInit {
 	ngOnInit() {}
 
 	onSubmit() {
+		console.log(this.site);
+
 		var data = {
 			NAME: this.site.name,
 			URL: this.site.url,

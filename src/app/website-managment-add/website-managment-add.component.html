@@ -20,7 +20,7 @@
           </md-select>
         </p>
         <p>
-          Enable : <md-slide-toggle ngDefaultControl [checked]="site.enable"></md-slide-toggle>
+          Enable : <md-slide-toggle ngDefaultControl [(ngModel)]="site.enable" name="enable" [checked]="site.enable"></md-slide-toggle>
         </p>
         <p>
           <button [routerLink]="['/website']" md-raised-button>back</button>
