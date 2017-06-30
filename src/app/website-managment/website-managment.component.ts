@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestOptions, Headers, Http, Response } from '@angular/http';
+import { LoginRedirectionService} from "app/service/login-redirection/login-redirection.service";
 import { MaterialModule } from '@angular/material';
 import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 
@@ -10,16 +11,20 @@ import {textDef} from "@angular/core/src/view";
 @Component({
     selector: 'app-websiteManagment',
     templateUrl: './website-managment.component.html',
-    styleUrls: ['./website-managment.component.css']
+    styleUrls: ['./website-managment.component.css'],
+    providers: [LoginRedirectionService]
 })
+
 export class WebsiteManagmentComponent implements OnInit {
 
     public data;
     public dataSpecificWebsite;
 
-    constructor(private http: Http) {
-
-    }
+    constructor(
+        private http: Http,
+        private loginRedirectionService: LoginRedirectionService
+    )
+    {}
 
     ngOnInit() {
         let url = "http://back.dashboard.antmine.io/website";
@@ -29,7 +34,10 @@ export class WebsiteManagmentComponent implements OnInit {
             .map(response => response.json()).subscribe((res) =>{
                 this.data = res;
             },
-            (err) => console.log('GET request error: ' + err),
+            (err) => {
+                console.log('GET request error: ' + err);
+                this.loginRedirectionService.checkStatus(err);
+            },
             () => {}
         );
     }
