@@ -1,6 +1,15 @@
+
 .page-wrapper {
     height: 50%;
     width: 50%;
     margin: auto auto auto auto;
     text-align: center;
+}
+
+.login-form > p > md-input-container {
+	width: 100%;
+}
+
+.login-form > .submit-btn {
+	float: right;
 }

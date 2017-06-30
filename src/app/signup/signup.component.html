@@ -1,53 +1,57 @@
 <!-- {{diagnostic}} --->
 
-
 <br>
-<div *ngIf="error != null">Code error {{error?.code}} : {{error?.path}}</div>
-<br>
-<form (ngSubmit)="onSubmit()" #signupForm="ngForm" class="example-form">
-  <p>
-    <md-input-container class="example-full-width">
-      <input required mdInput placeholder="First name" [(ngModel)]="model.name" name="name" id="name">
-    </md-input-container>
-  </p>
-  <p>
-    <md-input-container class="example-full-width">
-      <input required mdInput placeholder="Last name" [(ngModel)]="model.lastname" name="lastname" id="lastname">
-    </md-input-container>
-  </p>
-  <p>
-    <md-input-container class="example-full-width">
-      <input required mdInput type="email" placeholder="Email" [(ngModel)]="model.email" name="email" id="email">
-    </md-input-container>
-  </p>
-  <p>
-    <md-input-container class="example-full-width">
-      <input required mdInput type="password" placeholder="Password" [(ngModel)]="model.password" name="password" id="password">
-    </md-input-container>
-  </p>
-  <p>
-    <md-input-container class="example-full-width">
-      <input required mdInput type="date" placeholder="Birthday" [(ngModel)]="model.birthday" name="birthday" id="birthday">
-    </md-input-container>
-  </p>
-  <p>
-    <md-input-container class="example-full-width">
-      <textarea required mdInput placeholder="Address" [(ngModel)]="model.street" name="street" id="street"></textarea>
-    </md-input-container>
-  </p>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <div *ngIf="error != null">Code error {{error?.code}} : {{error?.path}}</div>
+    <br>
+    <form (ngSubmit)="onSubmit()" #signupForm="ngForm" class="signup-form">
+      <p>
+        <md-input-container class="example-full-width">
+          <input required mdInput placeholder="First name" [(ngModel)]="model.name" name="name" id="name">
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container class="example-full-width">
+          <input required mdInput placeholder="Last name" [(ngModel)]="model.lastname" name="lastname" id="lastname">
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container class="example-full-width">
+          <input required mdInput type="email" placeholder="Email" [(ngModel)]="model.email" name="email" id="email">
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container class="example-full-width">
+          <input required mdInput type="password" placeholder="Password" [(ngModel)]="model.password" name="password" id="password">
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container class="example-full-width">
+          <input required mdInput type="date" placeholder="Birthday" [(ngModel)]="model.birthday" name="birthday" id="birthday">
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container class="example-full-width">
+          <textarea required mdInput placeholder="Address" [(ngModel)]="model.street" name="street" id="street"></textarea>
+        </md-input-container>
+      </p>
 
-  <table class="example-full-width" cellspacing="0"><tr>
-    <td><md-input-container class="example-full-width">
-      <input required mdInput placeholder="City" [(ngModel)]="model.city" name="city" id="city">
-    </md-input-container></td>
-    <td><md-input-container class="example-full-width">
-      <input required mdInput placeholder="Country" [(ngModel)]="model.country" name="country" id="country">
-    </md-input-container></td>
-    <td><md-input-container class="example-full-width">
-      <input required mdInput #postalCode maxlength="5" placeholder="Postal Code" [(ngModel)]="model.zip_code" name="zip_code" id="zip_code">
-      <md-hint align="end">{{postalCode.value.length}} / 5</md-hint>
-    </md-input-container></td>
-  </tr></table>
-  <button type="submit" md-raised-button [disabled]="!signupForm.form.valid">Submit</button>
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><md-input-container class="example-full-width">
+          <input required mdInput placeholder="City" [(ngModel)]="model.city" name="city" id="city">
+        </md-input-container></td>
+        <td><md-input-container class="example-full-width">
+          <input required mdInput placeholder="Country" [(ngModel)]="model.country" name="country" id="country">
+        </md-input-container></td>
+        <td><md-input-container class="example-full-width">
+          <input required mdInput #postalCode maxlength="5" placeholder="Postal Code" [(ngModel)]="model.zip_code" name="zip_code" id="zip_code">
+          <md-hint align="end">{{postalCode.value.length}} / 5</md-hint>
+        </md-input-container></td>
+      </tr></table>
+      <button type="submit" md-raised-button [disabled]="!signupForm.form.valid" class="submit-btn">Submit</button>
 
-</form>
+    </form>
+
+  </div>
+</div>
