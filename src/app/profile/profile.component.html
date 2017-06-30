@@ -11,7 +11,7 @@
                 <input disabled type="text" class="form-field" placeholder="Lastname" value={{clientInfo?.LASTNAME}}>
             </div>
             <div class="form-line">
-                <input disabled type="date" class="form-field" placeholder="Birthday" value={{clientInfo?.DATE_BIRTHDAY}}>
+                <input disabled type="date" class="form-field" placeholder="Birthday" value='{{ clientInfo?.DATE_BIRTHDAY | date: "yyyy-MM-dd"}}'>
             </div>
             <div class="form-line">
                 <input disabled type="email" class="form-field" placeholder="E-mail" value={{clientInfo?.EMAIL_ADDRESS}}>
@@ -33,32 +33,32 @@
         <div id="info-form" class="hidden">
             <form id="edit-form"(ngSubmit)="onEditInfo()">
                 <div class="form-line">
-                    <input type="text" class="form-field" name="name" value={{clientInfo?.NAME}} required>
+                    <input required type="text" class="form-field" name="name" placeholder="Name" value={{clientInfo?.NAME}}>
                 </div>
                 <div class="form-line">
-                    <input type="text" class="form-field" name="lastname" value={{clientInfo?.LASTNAME}} required>
+                    <input required type="text" class="form-field" name="lastname" placeholder="Lastname" value={{clientInfo?.LASTNAME}}>
                 </div>
                 <div class="form-line">
-                    <input type="date" class="form-field" name="birthday" value={{clientInfo?.DATE_BIRTHDAY}} required>
+                    <input required type="date" class="form-field" name="birthday" placeholder="Birthday" value={{clientInfo?.DATE_BIRTHDAY}}>
                 </div>
                 <div class="form-line">
-                    <input type="email" class="form-field" name="email" value={{clientInfo?.EMAIL_ADDRESS}} required>
+                    <input required type="email" class="form-field" name="email" placeholder="E-mail" value={{clientInfo?.EMAIL_ADDRESS}}>
                 </div>
                 <div class="form-line">
-                    <input type="password" class="form-field" name="pwd" value={{clientInfo?.HASH_PASSWORD}} required>
+                    <input required type="password" class="form-field" name="pwd" placeholder="Password" value={{clientInfo?.ADDRESS?.STREET}}>
                 </div>
                 <h5>Address :</h5>
                 <div class="form-line">
-                    <input type="text" class="form-field" name="street" value={{clientInfo?.ADDRESS?.STREET}} required>
+                    <input required type="text" class="form-field" name="street" placeholder="Street" value={{clientInfo?.ADDRESS?.CITY}}>
                 </div>
                 <div class="form-line">
-                    <input type="text" class="form-field" name="city" value={{clientInfo?.ADDRESS?.CITY}} required>
+                    <input required type="text" class="form-field" name="city" placeholder="City" value={{clientInfo?.ADDRESS?.CITY}}>
                 </div>
                 <div class="form-line">
-                    <input type="text" class="form-field" name="zip-code" value={{clientInfo?.ADDRESS?.ZIP_CODE}} required>
+                    <input required type="text" class="form-field" name="zip-code" placeholder="ZIP" value={{clientInfo?.ADDRESS?.ZIP_CODE}}>
                 </div>
                 <div class="form-line">
-                    <input type="text" class="form-field" name="country" value={{clientInfo?.ADDRESS?.COUNTRY}} required>
+                    <input required type="text" class="form-field" name="country" placeholder="Country" value={{clientInfo?.ADDRESS?.COUNTRY}}>
                 </div>
                 <button id="submit" type="sumbit">submit</button>
             </form>

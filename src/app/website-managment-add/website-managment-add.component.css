@@ -1,19 +1,7 @@
-.website-container {
-    width:50%;
-    height: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3%;
+.addSiteForm > p > md-input-container {
+	width: 100%;
 }
 
-.form-field {
-    width: 50%;
-    height: 30px;
-    border-radius:         3px;
-    -moz-border-radius:    3px;
-    -webkit-border-radius: 3px;
-    border: 1px solid #dee3e4;
-    padding: 3px 12px;
-    margin: 6px 0;
-    box-shadow: none;
+md-slide-toggle {
+	margin-top: 15px;
 }
