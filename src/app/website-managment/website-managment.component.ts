@@ -71,12 +71,41 @@ export class WebsiteManagmentComponent implements OnInit {
 	}
 
 	deleteWebsite(row) {
-		/* let url = "http://back.dashboard.antmine.io/website/" + row.ID_WEBSITE;
+		let url = "http://back.dashboard.antmine.io/website/" + row.ID_WEBSITE;
         let options = new RequestOptions({withCredentials: true });
         this.http.delete(url, options)
             .toPromise()
             .then(this.extractData)
-            .catch(this.handleError);*/
+            .catch(this.handleError);
+	}
+
+	triggerEdit(row) {
+		this.dataSpecificWebsite = row;
+		this.toggleHidden();
+	}
+
+	editWebsite() {
+		this.toggleHidden();
+		var data = {
+			"NAME" : document.forms["edit-form"]["Name"].value,
+			"URL" : document.forms["edit-form"]["Url"].value,
+			"CRYPTO-CURRENCYs" : {
+				"ID_CRYPTO" : document.forms["edit-form"]["IdCrypto"].value,
+				"IS_ENABLE" : document.forms["edit-form"]["Enabled"].value,
+			}
+		};
+		let url = "http://back.dashboard.antmine.io/website/" + this.dataSpecificWebsite.ID_WEBSITE;
+		let headers = new Headers({'Content-Type': 'application/json'});
+		let options = new RequestOptions({headers: headers, withCredentials: true});
+		this.http.put(url, data, options)
+			.toPromise()
+			.then(this.extractData)
+			.catch(this.handleError);
+	}
+
+	toggleHidden() {
+		document.getElementById("websites-wrapper").classList.toggle("hidden");
+		document.getElementById("edit-wrapper").classList.toggle("hidden");
 	}
 
 	getScript() {
@@ -92,6 +121,7 @@ export class WebsiteManagmentComponent implements OnInit {
 	}
 
 	private extractData(res: Response) {
+		window.location.reload();
 		return res || {};
 	}
 
