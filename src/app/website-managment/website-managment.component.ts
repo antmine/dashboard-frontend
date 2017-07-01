@@ -71,12 +71,12 @@ export class WebsiteManagmentComponent implements OnInit {
 	}
 
 	deleteWebsite(row) {
-		/* let url = "http://back.dashboard.antmine.io/website/" + row.ID_WEBSITE;
-        let options = new RequestOptions({withCredentials: true });
-        this.http.delete(url, options)
+		 let url = "http://back.dashboard.antmine.io/website/" + row.ID_WEBSITE;
+     let options = new RequestOptions({withCredentials: true });
+     this.http.delete(url, options)
             .toPromise()
             .then(this.extractData)
-            .catch(this.handleError);*/
+            .catch(this.handleError);
 	}
 
 	getScript() {

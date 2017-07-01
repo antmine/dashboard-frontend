@@ -81,7 +81,7 @@ export class ProfileComponent implements OnInit {
     }
 
     private extractData(res: Response) {
-        console.log("Edit OK")
+        window.location.reload();
         return res|| { };
     }
 
