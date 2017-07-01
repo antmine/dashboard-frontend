@@ -35,7 +35,10 @@ export class ProfileComponent implements OnInit {
 				this.client.DATE_BIRTHDAY = new Date(this.client.DATE_BIRTHDAY);
 				console.log(this.client);
 			},
-			err => console.log("GET request error: " + err),
+			err => {
+				console.log("GET request error: " + err);
+				this.loginRedirectionService.checkStatus(err);
+				},
 			() => {}
 		);
 	}
