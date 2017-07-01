@@ -4,21 +4,19 @@
   <div class="col-md-4 col-md-offset-4">
     <div *ngIf="error">Code error {{error?.code}} : {{error?.path}}</div>
     <br>
-    <div class="page-wrapper">
-      <h3>Login</h3>
-      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
-        <p>
-          <md-input-container class="example-full-width">
-            <input required mdInput type="email" placeholder="Email" [(ngModel)]="login.email" name="email" id="email">
-          </md-input-container>
-        </p>
-        <p>
-          <md-input-container class="example-full-width">
-            <input required mdInput type="password" placeholder="Password" [(ngModel)]="login.password" name="password" id="password">
-          </md-input-container>
-        </p>
-        <button type="submit" md-raised-button [disabled]="!loginForm.form.valid" class="submit-btn">Submit</button>
-      </form>
-    </div>
+    <h3>Login</h3>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
+      <p>
+        <md-input-container class="example-full-width">
+          <input required mdInput type="email" placeholder="Email" [(ngModel)]="login.EMAIL_ADDRESS" name="email" id="email">
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container class="example-full-width">
+          <input required mdInput type="password" placeholder="Password" [(ngModel)]="login.HASH_PASSWORD" name="password" id="password">
+        </md-input-container>
+      </p>
+      <button type="submit" md-raised-button [disabled]="!loginForm.form.valid" class="submit-btn">Submit</button>
+    </form>
   </div>
 </div>

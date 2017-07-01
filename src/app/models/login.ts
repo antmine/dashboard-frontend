@@ -1,6 +1,6 @@
 export class Login {
-  public email: string;
-  public password: string;
+	public EMAIL_ADDRESS: string;
+	public HASH_PASSWORD: string;
 
-  constructor() {  }
+	constructor() {}
 }

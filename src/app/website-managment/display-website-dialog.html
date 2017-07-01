@@ -2,23 +2,31 @@
 <md-list>
   <md-list-item>
     <label md-line><b>Id :</b></label>
-    <span md-line>{{site.id }}</span>
+    <span md-line>{{site.ID_WEBSITE }}</span>
   </md-list-item>
   <md-list-item>
     <label md-line><b>Name :</b></label>
-    <span md-line>{{site.name }}</span>
+    <span md-line>{{site.NAME }}</span>
   </md-list-item>
   <md-list-item>
     <label md-line><b>Url :</b></label>
-    <span md-line>{{site.url }}</span>
+    <span md-line>{{site.URL }}</span>
   </md-list-item>
   <md-list-item>
     <label md-line><b>Enable :</b></label>
-    <span md-line>{{site.enable }}</span>
+    <span md-line>{{site.IS_ACTIVE }}</span>
   </md-list-item>
   <md-list-item>
     <label md-line><b>Script :</b></label>
     <span md-line>{{site.script}}</span>
   </md-list-item>
+  <hr>
+  <h4>Crypto Currencies :</h4>
+  <span *ngFor="let currency of site.CRYPTO_CURRENCY_WEBSITEs">
+    <md-list-item>
+      <label md-line><b>{{ currency.ID_CRYPTO }} :</b></label>
+      <span md-line>{{currency.IS_ENABLE}}</span>
+    </md-list-item>
+  </span>
 </md-list>
 <button style="float:right" md-raised-button md-dialog-close>Close</button>

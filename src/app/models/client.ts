@@ -1,13 +1,21 @@
-export class Client {
-  public name: string;
-  public lastname: string;
-  public email: string;
-  public birthday: string;
-  public password: string;
-  public street: string;
-  public city: string;
-  public zip_code: string;
-  public country: string;
+export class Address {
+	public STREET: string;
+	public CITY: string;
+	public ZIP_CODE: string;
+	public COUNTRY: string;
 
-  constructor() {  }
+	constructor() {}
+}
+
+export class Client {
+	public NAME: string;
+	public LASTNAME: string;
+	public EMAIL_ADDRESS: string;
+	public DATE_BIRTHDAY: Date;
+	public HASH_PASSWORD: string;
+	public ADDRESS: Address;
+
+	constructor() {
+		this.ADDRESS = new Address();
+	}
 }

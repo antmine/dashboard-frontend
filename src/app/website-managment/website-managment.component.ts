@@ -19,7 +19,6 @@ import { Site } from "../models/site";
 
 export class WebsiteManagmentComponent implements OnInit {
 	public data;
-	public dataSpecificWebsite;
 	private dialogRef;
 
 	constructor(private http: Http,
@@ -57,13 +56,10 @@ export class WebsiteManagmentComponent implements OnInit {
 		});
 		this.http.get(url, options).map(response => response.json()).subscribe(
 			res => {
-				this.dataSpecificWebsite = res;
+				console.log(res);
 				this.dialogRef = this.dialog.open(DisplayWebsiteDialog);
 				this.getScript();
-				this.dialogRef.componentInstance.site.id = res["ID_WEBSITE"];
-				this.dialogRef.componentInstance.site.name = res["NAME"];
-				this.dialogRef.componentInstance.site.url = res["URL"];
-				this.dialogRef.componentInstance.site.enable = res["IS_ACTIVE"];
+				this.dialogRef.componentInstance.site = res;
 			},
 			err => console.log("GET request error: " + err),
 			() => {}
