@@ -1,79 +1,53 @@
-<div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
     <h1>Profil et préférences</h1>
-    <div class="container-group">
-        <h2>Informations profil :</h2>
-        <button id="edit-button" (click)="triggerEdit()">edit</button>
-        <div id="info-container">
-            <div class="form-line">
-                <input disabled type="text" class="form-field" placeholder="Name" value={{clientInfo?.NAME}}>
-            </div>
-            <div class="form-line">
-                <input disabled type="text" class="form-field" placeholder="Lastname" value={{clientInfo?.LASTNAME}}>
-            </div>
-            <div class="form-line">
-                <input disabled type="date" class="form-field" placeholder="Birthday" value='{{ clientInfo?.DATE_BIRTHDAY | date: "yyyy-MM-dd"}}'>
-            </div>
-            <div class="form-line">
-                <input disabled type="email" class="form-field" placeholder="E-mail" value={{clientInfo?.EMAIL_ADDRESS}}>
-            </div>
-            <h5>Address :</h5>
-            <div class="form-line">
-                <input disabled type="text" class="form-field" placeholder="Street" value={{clientInfo?.ADDRESS?.STREET}}>
-            </div>
-            <div class="form-line">
-                <input disabled type="text" class="form-field" placeholder="City" value={{clientInfo?.ADDRESS?.CITY}}>
-            </div>
-            <div class="form-line">
-                <input disabled type="text" class="form-field" placeholder="ZIP" value={{clientInfo?.ADDRESS?.ZIP_CODE}}>
-            </div>
-            <div class="form-line">
-                <input disabled type="text" class="form-field" placeholder="Country" value={{clientInfo?.ADDRESS?.COUNTRY}}>
-            </div>
-        </div>
-        <div id="info-form" class="hidden">
-            <form id="edit-form"(ngSubmit)="onEditInfo()">
-                <div class="form-line">
-                    <input required type="text" class="form-field" name="name" placeholder="Name" value={{clientInfo?.NAME}}>
-                </div>
-                <div class="form-line">
-                    <input required type="text" class="form-field" name="lastname" placeholder="Lastname" value={{clientInfo?.LASTNAME}}>
-                </div>
-                <div class="form-line">
-                    <input required type="date" class="form-field" name="birthday" placeholder="Birthday" value={{clientInfo?.DATE_BIRTHDAY}}>
-                </div>
-                <div class="form-line">
-                    <input required type="email" class="form-field" name="email" placeholder="E-mail" value={{clientInfo?.EMAIL_ADDRESS}}>
-                </div>
-                <div class="form-line">
-                    <input required type="password" class="form-field" name="pwd" placeholder="Password" value={{clientInfo?.ADDRESS?.STREET}}>
-                </div>
-                <h5>Address :</h5>
-                <div class="form-line">
-                    <input required type="text" class="form-field" name="street" placeholder="Street" value={{clientInfo?.ADDRESS?.CITY}}>
-                </div>
-                <div class="form-line">
-                    <input required type="text" class="form-field" name="city" placeholder="City" value={{clientInfo?.ADDRESS?.CITY}}>
-                </div>
-                <div class="form-line">
-                    <input required type="text" class="form-field" name="zip-code" placeholder="ZIP" value={{clientInfo?.ADDRESS?.ZIP_CODE}}>
-                </div>
-                <div class="form-line">
-                    <input required type="text" class="form-field" name="country" placeholder="Country" value={{clientInfo?.ADDRESS?.COUNTRY}}>
-                </div>
-                <button id="submit" type="sumbit">submit</button>
-            </form>
-        </div>
-    </div>
-    <div class="container-group">
-        <h2>Préférences :</h2>
-        <h3>Cryptomonnaie disponibles</h3>
-        <ul id="crypto-checkboxes-group">
-            <li class="crypto-checkbox">
-                <input type="checkbox" class="checkbox">Bitcoin
-            </li>
-            <li class="crypto-checkbox">
-                <input type="checkbox" class="checkbox">Etherium
-            </li>
-        </ul>
-    </div>
+    <form (ngSubmit)="onSubmit()" #signupForm="ngForm" class="signup-form">
+      <p>
+        <md-input-container class="example-full-width">
+          <input required mdInput placeholder="First name" [(ngModel)]="client.NAME" name="NAME" id="NAME">
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container class="example-full-width">
+          <input required mdInput placeholder="Last name" [(ngModel)]="client.LASTNAME" name="LASTNAME" id="LASTNAME">
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container class="example-full-width">
+          <input required mdInput type="email" placeholder="Email" [(ngModel)]="client.EMAIL_ADDRESS" name="EMAIL_ADDRESS" id="EMAIL_ADDRESS">
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container class="example-full-width">
+          <input required mdInput type="password" placeholder="Password" [(ngModel)]="client.password" name="password" id="password">
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container class="example-full-width">
+          <input required mdInput type="date" placeholder="Birthday" [ngModel]="client.DATE_BIRTHDAY | date:'yyyy-MM-dd'" name="DATE_BIRTHDAY" id="DATE_BIRTHDAY">
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container class="example-full-width">
+          <textarea required mdInput placeholder="Address" [(ngModel)]="client.ADDRESS.STREET" name="street" id="street"></textarea>
+        </md-input-container>
+      </p>
+
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><md-input-container class="example-full-width">
+          <input required mdInput placeholder="City" [(ngModel)]="client.ADDRESS.CITY" name="city" id="city">
+        </md-input-container></td>
+        <td><md-input-container class="example-full-width">
+          <input required mdInput placeholder="Country" [(ngModel)]="client.ADDRESS.COUNTRY" name="country" id="country">
+        </md-input-container></td>
+        <td><md-input-container class="example-full-width">
+          <input required mdInput #postalCode maxlength="5" placeholder="Postal Code" [(ngModel)]="client.ADDRESS.ZIP_CODE" name="zip_code" id="zip_code">
+          <md-hint align="end">{{postalCode.value.length}} / 5</md-hint>
+        </md-input-container></td>
+      </tr></table>
+      <button type="submit" md-raised-button [disabled]="!signupForm.form.valid" class="submit-btn">Submit</button>
+
+    </form>
+
+  </div>
 </div>

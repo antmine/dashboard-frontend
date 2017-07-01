@@ -31,18 +31,7 @@ export class WebsiteManagmentAddComponent implements OnInit {
 	onSubmit() {
 		console.log(this.site);
 
-		var data = {
-			NAME: this.site.name,
-			URL: this.site.url,
-			CRYPTO_CURRENCYs: [
-				{
-					ID_CRYPTO: this.site.currency,
-					IS_ENABLE: this.site.enable
-				}
-			]
-		};
-
-		this.create(data).subscribe(
+		this.create(this.site).subscribe(
 			success => this.router.navigate(["website"]),
 			error => console.log(error)
 		);
