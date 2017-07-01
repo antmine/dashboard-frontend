@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestOptions,Headers, Http, Response} from '@angular/http';
+import { LoginRedirectionService} from "app/service/login-redirection/login-redirection.service";
 
 import 'rxjs/add/operator/toPromise';
 import {Observable} from 'rxjs/Observable';
@@ -9,16 +10,19 @@ import 'rxjs/add/operator/map';
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.css']
+    styleUrls: ['./profile.component.css'],
+    providers: [LoginRedirectionService],
 })
 
 export class ProfileComponent implements OnInit {
 
     clientInfo;
 
-    constructor(private http: Http) {
-
-    }
+    constructor(
+        private http: Http,
+        private loginRedirectionService: LoginRedirectionService,
+    )
+    { }
 
     ngOnInit() {
         let url = "http://back.dashboard.antmine.io/client";
@@ -29,7 +33,10 @@ export class ProfileComponent implements OnInit {
                 this.clientInfo = res;
                 this.clientInfo.DATE_BIRTHDAY = new Date(this.clientInfo.DATE_BIRTHDAY);
             },
-            (err) => console.log('GET request error: ' + err),
+            (err) => {
+                console.log('GET request error: ' + err);
+                this.loginRedirectionService.checkStatus(err);
+            },
             () => {}
         );
     }

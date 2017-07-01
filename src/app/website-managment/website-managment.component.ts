@@ -1,24 +1,32 @@
-import { Component, OnInit } from "@angular/core";
-import { RequestOptions, Headers, Http, Response } from "@angular/http";
+
+import { Component, OnInit } from '@angular/core';
+import { RequestOptions, Headers, Http, Response } from '@angular/http';
+import { LoginRedirectionService} from "app/service/login-redirection/login-redirection.service";
 import { MaterialModule, MdDialog } from "@angular/material";
 import { Router, Event as RouterEvent } from "@angular/router";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/toPromise";
-import { textDef } from "@angular/core/src/view";
+
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
+import {textDef} from "@angular/core/src/view";
 import { Site } from "../models/site";
 
 @Component({
-	selector: "app-websiteManagment",
-	templateUrl: "./website-managment.component.html",
-	styleUrls: ["./website-managment.component.css"]
+    selector: 'app-websiteManagment',
+    templateUrl: './website-managment.component.html',
+    styleUrls: ['./website-managment.component.css'],
+    providers: [LoginRedirectionService]
 })
+
 export class WebsiteManagmentComponent implements OnInit {
 	public data;
 	public dataSpecificWebsite;
 	private dialogRef;
 
-
-	constructor(private http: Http, public dialog: MdDialog) {}
+	constructor(private http: Http,
+				public dialog: MdDialog,
+				private loginRedirectionService: LoginRedirectionService
+	)
+	{}
 
 	ngOnInit() {
 		let url = "http://back.dashboard.antmine.io/website";
@@ -32,7 +40,10 @@ export class WebsiteManagmentComponent implements OnInit {
 				this.data = res;
 				console.log(this.data);
 			},
-			err => console.log("GET request error: " + err),
+			(err) => {
+				console.log('GET request error: ' + err);
+				this.loginRedirectionService.checkStatus(err);
+			},
 			() => {}
 		);
 	}
