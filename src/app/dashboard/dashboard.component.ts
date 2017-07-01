@@ -1,4 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
+import {RequestOptions,Headers, Http, Response} from '@angular/http';
+import {Router}                                       from "@angular/router";
+
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +10,11 @@ import { Component, OnInit, Injectable } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() {}
+  constructor(
+      private router: Router,
+      private http: Http
+  )
+  {}
 
   ngOnInit() {
   }
