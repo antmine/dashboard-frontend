@@ -46,8 +46,11 @@
         </md-input-container></td>
       </tr></table>
       <button type="submit" md-raised-button [disabled]="!signupForm.form.valid" class="submit-btn">Submit</button>
-
     </form>
-
+    <br><br><br>
+    <p>
+      <button md-raised-button (click)="deleteAccount()">Supprimer compte</button>
+    </p>
   </div>
+
 </div>

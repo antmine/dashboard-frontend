@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { RequestOptions, Headers, Http, Response } from "@angular/http";
 import { LoginRedirectionService } from "app/service/login-redirection/login-redirection.service";
 import { MdSnackBar } from "@angular/material";
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit {
 
 	constructor(
 		private http: Http,
+		private router: Router,
 		public snackBar: MdSnackBar,
 		private loginRedirectionService: LoginRedirectionService
 	) {}
@@ -56,6 +58,26 @@ export class ProfileComponent implements OnInit {
 			.subscribe(
 				data => this.snackBar.open("Profil edited", "Ok"),
 				err => this.loginRedirectionService.checkStatus(err)
+			);
+	}
+
+	public deleteAccount() {
+		let url = "http://back.dashboard.antmine.io/client";
+		let headers = new Headers({"Content-Type": "application/json"});
+		let options = new RequestOptions({
+			headers: headers,
+			withCredentials: true
+		});
+		this.http.delete(url, options)
+			.subscribe(
+				success => {
+					this.router.navigate(["login"]);
+					this.snackBar.open("Vous avez été déconnecté", "Ok");
+				},
+				error => {
+					console.log(error);
+					this.loginRedirectionService.checkStatus(error);
+				}
 			);
 	}
 }
