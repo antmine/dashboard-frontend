@@ -1,0 +1,24 @@
+
+<div class="row">
+  <div class="col-md-offset-4 col-md-4">
+    <h3>websites managment</h3>
+    <div class="websites-container">
+      <a [routerLink]="['/website/add']" md-raised-button>Add</a>
+      <md-list>
+        <md-list-item *ngFor="let row of data">
+          <h3 md-line> {{row.NAME}} </h3>
+          <p md-line>
+            <span> {{row.URL}} </span>
+            <span class="demo-2"> -- {{row.IS_ACTIVE}} </span>
+          </p>
+          <button md-icon-button (click)="displayWebsite(row);">
+            <md-icon>info</md-icon>
+          </button>
+          <button md-icon-button (click)="deleteWebsite(row)">
+            <md-icon>delete</md-icon>
+          </button>
+        </md-list-item>
+      </md-list>
+    </div>
+  </div>
+</div>

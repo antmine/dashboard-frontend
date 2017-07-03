@@ -23,22 +23,38 @@
   </md-toolbar>
 
   <md-sidenav-container class="sidenav-container">
-    <md-sidenav #sidenav class="md-sidenav-left" mode="side" opened="true">
+    <md-sidenav #sidenav class="md-sidenav-left" mode="side" opened="false">
 
       <md-toolbar color="warm">
-        <h3 class="md-toolbar-tools">Mes sites</h3>
+        <h3 class="md-toolbar-tools">Gestion du compte</h3>
       </md-toolbar>
 
-      <md-nav-list *ngFor="let row of data" no-lines>
-        <a [routerLink]="['/site', row.owner.login, row.name]">
+      <md-nav-list>
+        <a [routerLink]="['/profile']">
           <md-list-item>
-            <md-icon md-list-icon>navigate_next</md-icon>
-            <h4 md-line>{{ row.name }}</h4>
-            <p md-line>{{ row.description }}</p>
+            <md-icon md-list-icon>account_circle</md-icon>
+            <h4 md-line>Profil et préferences</h4>
+          </md-list-item>
+        </a>
+        <a [routerLink]="['/website']">
+          <md-list-item>
+            <md-icon md-list-icon>settings</md-icon>
+            <h4 md-line >Gestion site web</h4>
+          </md-list-item>
+        </a>
+        <a>
+          <md-list-item>
+            <md-icon md-list-icon>account_balance_wallet</md-icon>
+            <h4 md-line>Solde et portefeuilles</h4>
+          </md-list-item>
+        </a>
+        <a href="https://epitechfr-my.sharepoint.com/personal/aljosha_armitano_epitech_eu/_layouts/15/guestaccess.aspx?docid=08e557547c7154ba9a46337e59851b9f8&authkey=AVejU1hyESlLXX1jZ0JLiRU">
+          <md-list-item>
+            <md-icon md-list-icon>info_outline</md-icon>
+            <h4 md-line>Manuel utilisateur</h4>
           </md-list-item>
         </a>
       </md-nav-list>
-
     </md-sidenav>
 
     <div class="example-sidenav-content">

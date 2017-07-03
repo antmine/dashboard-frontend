@@ -47,8 +47,7 @@ export class WebsiteManagmentComponent implements OnInit {
 				this.getScript();
 				this.dialogRef.componentInstance.site = res;
 			},
-			err => console.log("GET request error: " + err),
-			() => {}
+			err => this.loginRedirectionService.checkStatus(err)
 		);
 	}
 

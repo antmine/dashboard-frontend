@@ -1,0 +1,7 @@
+.addSiteForm > p > md-input-container {
+	width: 100%;
+}
+
+md-slide-toggle {
+	margin-top: 15px;
+}

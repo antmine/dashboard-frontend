@@ -1,31 +1,30 @@
-<br>
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
-    <br>
+    <h1>Profil et préférences</h1>
     <form (ngSubmit)="onSubmit()" #signupForm="ngForm" class="signup-form">
       <p>
         <md-input-container class="example-full-width">
-          <input required mdInput placeholder="First name" [(ngModel)]="client.NAME" name="name" id="name">
+          <input required mdInput placeholder="First name" [(ngModel)]="client.NAME" name="NAME" id="NAME">
         </md-input-container>
       </p>
       <p>
         <md-input-container class="example-full-width">
-          <input required mdInput placeholder="Last name" [(ngModel)]="client.LASTNAME" name="lastname" id="lastname">
+          <input required mdInput placeholder="Last name" [(ngModel)]="client.LASTNAME" name="LASTNAME" id="LASTNAME">
         </md-input-container>
       </p>
       <p>
         <md-input-container class="example-full-width">
-          <input required mdInput type="email" placeholder="Email" [(ngModel)]="client.EMAIL_ADDRESS" name="email" id="email">
+          <input required mdInput type="email" placeholder="Email" [(ngModel)]="client.EMAIL_ADDRESS" name="EMAIL_ADDRESS" id="EMAIL_ADDRESS">
         </md-input-container>
       </p>
       <p>
         <md-input-container class="example-full-width">
-          <input required mdInput type="password" placeholder="Password" [(ngModel)]="client.HASH_PASSWORD" name="password" id="password">
+          <input required mdInput type="password" placeholder="Password" [(ngModel)]="client.password" name="password" id="password">
         </md-input-container>
       </p>
       <p>
         <md-input-container class="example-full-width">
-          <input required mdInput type="date" placeholder="Birthday" [(ngModel)]="client.DATE_BIRTHDAY" name="birthday" id="birthday">
+          <input required mdInput type="date" placeholder="Birthday" [ngModel]="client.DATE_BIRTHDAY | date:'yyyy-MM-dd'" name="DATE_BIRTHDAY" id="DATE_BIRTHDAY">
         </md-input-container>
       </p>
       <p>
@@ -47,8 +46,11 @@
         </md-input-container></td>
       </tr></table>
       <button type="submit" md-raised-button [disabled]="!signupForm.form.valid" class="submit-btn">Submit</button>
-
     </form>
-
+    <br><br><br>
+    <p>
+      <button md-raised-button (click)="deleteAccount()">Supprimer compte</button>
+    </p>
   </div>
+
 </div>

@@ -1,43 +1,14 @@
-import { BrowserModule }          from '@angular/platform-browser';
-import { NgModule }               from '@angular/core';
-import { FormsModule }            from '@angular/forms';
-import { HttpModule }             from '@angular/http';
-import { MaterialModule }         from '@angular/material';
-import {BrowserAnimationsModule}  from '@angular/platform-browser/animations';
-import { ChartsModule }           from 'ng2-charts';
-import 'hammerjs';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { HttpModule } from "@angular/http";
+import { MaterialModule } from "@angular/material";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ChartsModule } from "ng2-charts";
+import "hammerjs";
 
-import { AppRoutingModule }       from './app-routing.module'
+import { AppRoutingModule } from "./app-routing.module";
 
-<<<<<<< Updated upstream
-import { AppComponent }           from './app.component';
-import { DashboardComponent }          from './dashboard/dashboard.component';
-import { DashboardBrowsersComponent } from './dashboard-browsers/dashboard-browsers.component';
-import { DashboardIncomeComponent } from './dashboard-income/dashboard-income.component';
-import { SiteDetailsComponent } from './site-details/site-details.component';
-import { SignupComponent } from './signup/signup.component';
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    DashboardBrowsersComponent,
-    DashboardIncomeComponent,
-    SiteDetailsComponent,
-    SignupComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule.forRoot(),
-    ChartsModule
-    ],
-  providers: [],
-  bootstrap: [AppComponent]
-=======
 import { AppComponent } from "./app.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { DashboardBrowsersComponent } from "./dashboard-browsers/dashboard-browsers.component";
@@ -78,6 +49,5 @@ import { WebsiteManagmentEditComponent } from "./website-managment-edit/website-
 	providers: [],
 	entryComponents: [WebsiteManagmentEditComponent],
 	bootstrap: [AppComponent]
->>>>>>> Stashed changes
 })
-export class AppModule { }
+export class AppModule {}

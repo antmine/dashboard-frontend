@@ -1,27 +1,27 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-
+import { MdSnackBar } from "@angular/material";
 import {
 	RequestOptions,
 	Request,
+	RequestMethod,
 	Headers,
 	Http,
 	Response
 } from "@angular/http";
-import { MdSnackBar } from "@angular/material";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 
-import { Client } from "../models/client";
+import { Login } from "../models/login";
 
 @Component({
-	selector: "app-signup",
-	templateUrl: "./signup.component.html",
-	styleUrls: ["./signup.component.css"]
+	selector: "app-login",
+	templateUrl: "./login.component.html",
+	styleUrls: ["./login.component.css"]
 })
-export class SignupComponent implements OnInit {
-	client = new Client();
+export class LoginComponent implements OnInit {
+	login = new Login();
 
 	constructor(
 		private http: Http,
@@ -32,16 +32,19 @@ export class SignupComponent implements OnInit {
 	ngOnInit() {}
 
 	onSubmit() {
-		this.create(this.client).subscribe(
-			success => this.router.navigate(["login"]),
-			error => this.snackBar.open("Une erreur est survenue", "Ok")
+		this.create(this.login).subscribe(
+			success => this.router.navigate(["dashboard"]),
+			error => this.snackBar.open("Identifiants incorrects", "Ok")
 		);
 	}
 
-	create(data): Observable<Client> {
-		let url = "http://back.dashboard.antmine.io:80/client/signup";
+	create(data): Observable<Login> {
+		let url = "http://back.dashboard.antmine.io:80/client/login";
 		let headers = new Headers({ "Content-Type": "application/json" });
-		let options = new RequestOptions({ headers: headers });
+		let options = new RequestOptions({
+			headers: headers,
+			withCredentials: true
+		});
 		return this.http
 			.post(url, data, options)
 			.map(this.extractData)
@@ -49,8 +52,8 @@ export class SignupComponent implements OnInit {
 	}
 
 	private extractData(res: Response) {
-		console.log("Signup OK");
-		return res;
+		console.log(res);
+		return res.json().data || {};
 	}
 
 	private handleError(error: Response | any) {

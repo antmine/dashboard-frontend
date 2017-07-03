@@ -10,7 +10,6 @@ export class Site {
 	public NAME: string;
 	public URL: string;
 	public IS_ACTIVE: boolean;
-	public CRYPTO_CURRENCYs: CryptoCurrency[];
 	public CRYPTO_CURRENCY_WEBSITEs: CryptoCurrency[];
 	public script: string;
 
@@ -18,8 +17,8 @@ export class Site {
 		let crypto = new CryptoCurrency();
 		crypto.ID_CRYPTO = "BTC";
 		crypto.IS_ENABLE = true;
-		this.CRYPTO_CURRENCYs = [];
-		this.CRYPTO_CURRENCYs.push(crypto);
+		this.CRYPTO_CURRENCY_WEBSITEs = [];
+		this.CRYPTO_CURRENCY_WEBSITEs.push(crypto);
 		this.IS_ACTIVE = false;
 	}
 }
