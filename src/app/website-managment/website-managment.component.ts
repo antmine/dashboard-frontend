@@ -1,50 +1,34 @@
-
-import { Component, OnInit } from '@angular/core';
-import { RequestOptions, Headers, Http, Response } from '@angular/http';
-import { LoginRedirectionService} from "app/service/login-redirection/login-redirection.service";
+import { Component, OnInit } from "@angular/core";
+import { RequestOptions, Headers, Http, Response } from "@angular/http";
+import { LoginRedirectionService } from "app/service/login-redirection/login-redirection.service";
+import { WebsiteManagmentEditComponent } from "../website-managment-edit/website-managment-edit.component";
+import { MdSnackBar, MdDialogRef } from "@angular/material";
 import { MaterialModule, MdDialog } from "@angular/material";
 import { Router, Event as RouterEvent } from "@angular/router";
-
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/toPromise';
-import {textDef} from "@angular/core/src/view";
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/toPromise";
+import { textDef } from "@angular/core/src/view";
 import { Site } from "../models/site";
 
 @Component({
-    selector: 'app-websiteManagment',
-    templateUrl: './website-managment.component.html',
-    styleUrls: ['./website-managment.component.css'],
-    providers: [LoginRedirectionService]
+	selector: "app-websiteManagment",
+	templateUrl: "./website-managment.component.html",
+	styleUrls: ["./website-managment.component.css"],
+	providers: [LoginRedirectionService]
 })
-
 export class WebsiteManagmentComponent implements OnInit {
 	public data;
 	private dialogRef;
 
-	constructor(private http: Http,
-				public dialog: MdDialog,
-				private loginRedirectionService: LoginRedirectionService
-	)
-	{}
+	constructor(
+		private http: Http,
+		public dialog: MdDialog,
+		public snackBar: MdSnackBar,
+		private loginRedirectionService: LoginRedirectionService
+	) {}
 
 	ngOnInit() {
-		let url = "http://back.dashboard.antmine.io/website";
-		let headers = new Headers({ "Content-Type": "application/json" });
-		let options = new RequestOptions({
-			headers: headers,
-			withCredentials: true
-		});
-		this.http.get(url, options).map(response => response.json()).subscribe(
-			res => {
-				this.data = res;
-				console.log(this.data);
-			},
-			(err) => {
-				console.log('GET request error: ' + err);
-				this.loginRedirectionService.checkStatus(err);
-			},
-			() => {}
-		);
+		this.getWebsites();
 	}
 
 	displayWebsite(row) {
@@ -56,23 +40,48 @@ export class WebsiteManagmentComponent implements OnInit {
 		});
 		this.http.get(url, options).map(response => response.json()).subscribe(
 			res => {
-				console.log(res);
-				this.dialogRef = this.dialog.open(DisplayWebsiteDialog);
+				this.dialogRef = this.dialog.open(WebsiteManagmentEditComponent);
+				this.dialogRef.afterClosed().subscribe(res => {
+					if (res) this.getWebsites();
+				});
 				this.getScript();
 				this.dialogRef.componentInstance.site = res;
 			},
-			err => console.log("GET request error: " + err),
-			() => {}
+			err => this.loginRedirectionService.checkStatus(err)
 		);
 	}
 
 	deleteWebsite(row) {
-		 let url = "http://back.dashboard.antmine.io/website/" + row.ID_WEBSITE;
-     let options = new RequestOptions({withCredentials: true });
-     this.http.delete(url, options)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+		let url = "http://back.dashboard.antmine.io/website/" + row.ID_WEBSITE;
+		let options = new RequestOptions({ withCredentials: true });
+
+		this.http.delete(url, options).map(res => res.text()).subscribe(
+			data => {
+				this.snackBar.open("Site deleted", "Ok");
+				this.getWebsites();
+			},
+			err => this.loginRedirectionService.checkStatus(err)
+		);
+	}
+
+	getWebsites() {
+		let url = "http://back.dashboard.antmine.io/website";
+		let headers = new Headers({ "Content-Type": "application/json" });
+		let options = new RequestOptions({
+			headers: headers,
+			withCredentials: true
+		});
+		this.http.get(url, options).map(response => response.json()).subscribe(
+			res => {
+				this.data = res;
+				console.log(this.data);
+			},
+			err => {
+				console.log("GET request error: " + err);
+				this.loginRedirectionService.checkStatus(err);
+			},
+			() => {}
+		);
 	}
 
 	getScript() {
@@ -102,12 +111,4 @@ export class WebsiteManagmentComponent implements OnInit {
 		}
 		return Observable.throw(errMsg);
 	}
-}
-
-@Component({
-	selector: "display-website-dialog",
-	templateUrl: "display-website-dialog.html"
-})
-export class DisplayWebsiteDialog {
-	site = new Site();
 }

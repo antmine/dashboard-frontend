@@ -19,7 +19,7 @@
         </p>
         <hr>
         <h4>Crypto Currencies :</h4>
-        <p *ngFor="let currency of site.CRYPTO_CURRENCYs">
+        <p *ngFor="let currency of site.CRYPTO_CURRENCY_WEBSITEs">
             <b>{{ currency.ID_CRYPTO }} :</b> <md-slide-toggle ngDefaultControl [(ngModel)]="currency.IS_ENABLE" name="enable" [checked]="currency.IS_ENABLE"></md-slide-toggle>
         </p>
         <!-- <p>

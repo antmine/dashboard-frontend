@@ -16,13 +16,11 @@ import { DashboardIncomeComponent } from "./dashboard-income/dashboard-income.co
 import { SiteDetailsComponent } from "./site-details/site-details.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SignupComponent } from "./signup/signup.component";
-import {
-	WebsiteManagmentComponent,
-	DisplayWebsiteDialog
-} from "./website-managment/website-managment.component";
+import { WebsiteManagmentComponent } from "./website-managment/website-managment.component";
 import { LoginComponent } from "./login/login.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { WebsiteManagmentAddComponent } from "./website-managment-add/website-managment-add.component";
+import { WebsiteManagmentEditComponent } from "./website-managment-edit/website-managment-edit.component";
 
 @NgModule({
 	declarations: [
@@ -37,7 +35,7 @@ import { WebsiteManagmentAddComponent } from "./website-managment-add/website-ma
 		LogoutComponent,
 		WebsiteManagmentComponent,
 		WebsiteManagmentAddComponent,
-		DisplayWebsiteDialog
+		WebsiteManagmentEditComponent
 	],
 	imports: [
 		BrowserModule,
@@ -49,7 +47,7 @@ import { WebsiteManagmentAddComponent } from "./website-managment-add/website-ma
 		ChartsModule
 	],
 	providers: [],
-	entryComponents: [DisplayWebsiteDialog],
+	entryComponents: [WebsiteManagmentEditComponent],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}

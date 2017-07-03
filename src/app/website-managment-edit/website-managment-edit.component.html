@@ -1,0 +1,28 @@
+<h3>Site informations : </h3>
+<form  (ngSubmit)="onSubmit()" #editSiteForm="ngForm" class="addSiteForm">
+<p>
+  <md-input-container class="example-full-width">
+    <input required disabled mdInput placeholder="Id" [(ngModel)]="site.ID_WEBSITE" name="ID_WEBSITE" id="ID_WEBSITE">
+  </md-input-container>
+</p>
+<p>
+  <md-input-container class="example-full-width">
+    <input required mdInput placeholder="Name" [(ngModel)]="site.NAME" name="NAME" id="NAME">
+  </md-input-container>
+</p>
+<p>
+  <md-input-container class="example-full-width">
+    <input required disable mdInput placeholder="Url" [(ngModel)]="site.URL" name="URL" id="URL">
+  </md-input-container>
+</p>
+<!-- <p>
+  Site Enable : <md-slide-toggle ngDefaultControl [(ngModel)]="site.IS_ACTIVE" name="enable" [checked]="site.IS_ACTIVE"></md-slide-toggle>
+</p> -->
+<!-- <hr> -->
+<h4>Crypto Currencies :</h4>
+<p *ngFor="let currency of site.CRYPTO_CURRENCY_WEBSITEs">
+    <b>{{ currency.ID_CRYPTO }} :</b> <md-slide-toggle ngDefaultControl [(ngModel)]="currency.IS_ENABLE" name="enable" [checked]="currency.IS_ENABLE"></md-slide-toggle>
+</p>
+<button md-button md-dialog-close>Close</button>
+<button type="submit" md-raised-button [disabled]="!editSiteForm.form.valid" class="submit-btn">Update</button>
+</form>
