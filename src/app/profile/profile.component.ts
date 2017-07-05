@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
 			err => {
 				console.log("GET request error: " + err);
 				this.loginRedirectionService.checkStatus(err);
-				},
+			},
 			() => {}
 		);
 	}
@@ -56,28 +56,27 @@ export class ProfileComponent implements OnInit {
 			.put(url, this.client, options)
 			.map(res => res.text())
 			.subscribe(
-				data => this.snackBar.open("Profil edited", "Ok"),
+				data => this.snackBar.open("Profil sauvegardé", "Ok"),
 				err => this.loginRedirectionService.checkStatus(err)
 			);
 	}
 
 	public deleteAccount() {
 		let url = "http://back.dashboard.antmine.io/client";
-		let headers = new Headers({"Content-Type": "application/json"});
+		let headers = new Headers({ "Content-Type": "application/json" });
 		let options = new RequestOptions({
 			headers: headers,
 			withCredentials: true
 		});
-		this.http.delete(url, options)
-			.subscribe(
-				success => {
-					this.router.navigate(["login"]);
-					this.snackBar.open("Vous avez été déconnecté", "Ok");
-				},
-				error => {
-					console.log(error);
-					this.loginRedirectionService.checkStatus(error);
-				}
-			);
+		this.http.delete(url, options).subscribe(
+			success => {
+				this.router.navigate(["login"]);
+				this.snackBar.open("Vous avez été déconnecté", "Ok");
+			},
+			error => {
+				console.log(error);
+				this.loginRedirectionService.checkStatus(error);
+			}
+		);
 	}
 }

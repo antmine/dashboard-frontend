@@ -57,7 +57,7 @@ export class WebsiteManagmentComponent implements OnInit {
 
 		this.http.delete(url, options).map(res => res.text()).subscribe(
 			data => {
-				this.snackBar.open("Site deleted", "Ok");
+				this.snackBar.open("Site supprimé", "Ok");
 				this.getWebsites();
 			},
 			err => this.loginRedirectionService.checkStatus(err)

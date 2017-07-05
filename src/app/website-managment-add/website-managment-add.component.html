@@ -2,11 +2,11 @@
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
     <div class="website-container">
-      <h3>Add a website</h3>
+      <h3>Ajouter un site</h3>
       <form  (ngSubmit)="onSubmit()" #addSiteForm="ngForm" class="addSiteForm">
         <p>
           <md-input-container>
-            <input required mdInput placeholder="Name" [(ngModel)]="site.NAME" name="name" id="name">
+            <input required mdInput placeholder="Nom" [(ngModel)]="site.NAME" name="name" id="name">
           </md-input-container>
         </p>
         <p>
@@ -14,11 +14,8 @@
             <input required mdInput placeholder="Url" [(ngModel)]="site.URL" name="url" id="url">
           </md-input-container>
         </p>
-        <p>
-          Site Enable : <md-slide-toggle ngDefaultControl [(ngModel)]="site.IS_ACTIVE" name="enable" [checked]="site.IS_ACTIVE"></md-slide-toggle>
-        </p>
         <hr>
-        <h4>Crypto Currencies :</h4>
+        <h4>Crypto Monnaies :</h4>
         <p *ngFor="let currency of site.CRYPTO_CURRENCY_WEBSITEs">
             <b>{{ currency.ID_CRYPTO }} :</b> <md-slide-toggle ngDefaultControl [(ngModel)]="currency.IS_ENABLE" name="enable" [checked]="currency.IS_ENABLE"></md-slide-toggle>
         </p>
@@ -28,8 +25,8 @@
           </md-select>
         </p> -->
         <p>
-          <button [routerLink]="['/website']" md-raised-button>back</button>
-          <button type="submit" md-raised-button [disabled]="!addSiteForm.form.valid" class="submit-btn">Submit</button>
+          <button [routerLink]="['/website']" md-raised-button>Retour</button>
+          <button type="submit" md-raised-button [disabled]="!addSiteForm.form.valid" class="submit-btn">Enregistrer</button>
         </p>
       </form>
     </div>

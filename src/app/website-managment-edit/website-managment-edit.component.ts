@@ -32,7 +32,7 @@ export class WebsiteManagmentEditComponent {
 		});
 		this.http.put(url, this.site, options).map(res => res.text()).subscribe(
 			data => {
-				this.snackBar.open("Site updated", "Ok");
+				this.snackBar.open("Site enregistré", "Ok");
 				this.dialogRef.close(true);
 			},
 			err => console.log() //this.loginRedirectionService.checkStatus(err)

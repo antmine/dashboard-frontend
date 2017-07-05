@@ -4,7 +4,7 @@
   <div class="col-md-4 col-md-offset-4">
     <div *ngIf="error">Code error {{error?.code}} : {{error?.path}}</div>
     <br>
-    <h3>Login</h3>
+    <h3>Connection</h3>
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
       <p>
         <md-input-container class="example-full-width">
@@ -13,11 +13,11 @@
       </p>
       <p>
         <md-input-container class="example-full-width">
-          <input required mdInput type="password" placeholder="Password" [(ngModel)]="login.HASH_PASSWORD" name="password" id="password">
+          <input required mdInput type="password" placeholder="Mot de passe" [(ngModel)]="login.HASH_PASSWORD" name="password" id="password">
         </md-input-container>
       </p>
       <a href="/signup" md-raised-button class="signup-btn">Créer un compte</a>
-      <button type="submit" md-raised-button [disabled]="!loginForm.form.valid" class="submit-btn">Submit</button>
+      <button type="submit" md-raised-button [disabled]="!loginForm.form.valid" class="submit-btn">Se connecter</button>
     </form>
   </div>
 </div>
