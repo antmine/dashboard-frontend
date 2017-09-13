@@ -34,7 +34,11 @@ export class SignupComponent implements OnInit {
 	onSubmit() {
 		this.create(this.client).subscribe(
 			success => this.router.navigate(["login"]),
-			error => this.snackBar.open("Une erreur est survenue", "Ok")
+			error =>
+				this.snackBar.open(
+					"Un compte existe déjà avec cette adresse mail",
+					"Ok"
+				)
 		);
 	}
 

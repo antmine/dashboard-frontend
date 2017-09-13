@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
 			.map(res => res.text())
 			.subscribe(
 				data => this.snackBar.open("Profil sauvegardé", "Ok"),
-				err => this.loginRedirectionService.checkStatus(err)
+				err => this.snackBar.open("Il y a eu une erreur", "Ok")
 			);
 	}
 

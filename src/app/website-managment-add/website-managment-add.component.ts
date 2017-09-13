@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { MdSnackBar, MdDialogRef } from "@angular/material";
 import { RequestOptions, Headers, Http, Response } from "@angular/http";
 import { LoginRedirectionService } from "app/service/login-redirection/login-redirection.service";
 
@@ -14,9 +15,8 @@ import { Site } from "../models/site";
 	selector: "app-website-managment-add",
 	templateUrl: "./website-managment-add.component.html",
 	styleUrls: ["./website-managment-add.component.css"],
-    providers: [LoginRedirectionService],
+	providers: [LoginRedirectionService]
 })
-
 export class WebsiteManagmentAddComponent implements OnInit {
 	site = new Site();
 
@@ -27,10 +27,12 @@ export class WebsiteManagmentAddComponent implements OnInit {
 		}
 	];
 
-	constructor(private http: Http,
-                private router: Router,
-                private loginRedirectionService: LoginRedirectionService
-    ) {}
+	constructor(
+		private http: Http,
+		private router: Router,
+		public snackBar: MdSnackBar,
+		private loginRedirectionService: LoginRedirectionService
+	) {}
 
 	ngOnInit() {}
 
@@ -40,8 +42,9 @@ export class WebsiteManagmentAddComponent implements OnInit {
 		this.create(this.site).subscribe(
 			success => this.router.navigate(["website"]),
 			error => {
-                console.log(error);
-                this.loginRedirectionService.checkStatus(error);
+				console.log(error);
+				this.snackBar.open("Erreur lors de la création", "Ok");
+				this.loginRedirectionService.checkStatus(error);
 			}
 		);
 	}
@@ -64,7 +67,7 @@ export class WebsiteManagmentAddComponent implements OnInit {
 	}
 
 	private handleError(error: Response | any) {
-        //this.loginRedirectionService.checkStatus(error);
+		//this.loginRedirectionService.checkStatus(error);
 		let errMsg;
 		if (error instanceof Response) {
 			const body = error.json() || "";

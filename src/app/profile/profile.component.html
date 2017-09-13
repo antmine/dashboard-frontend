@@ -14,7 +14,7 @@
       </p>
       <p>
         <md-input-container class="example-full-width">
-          <input required mdInput type="email" placeholder="Email" [(ngModel)]="client.EMAIL_ADDRESS" name="EMAIL_ADDRESS" id="EMAIL_ADDRESS">
+          <input required mdInput type="email" placeholder="Email" [(ngModel)]="client.EMAIL_ADDRESS" name="EMAIL_ADDRESS" id="EMAIL_ADDRESS" ngControl="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$">
         </md-input-container>
       </p>
       <p>

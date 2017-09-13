@@ -35,7 +35,7 @@ export class WebsiteManagmentEditComponent {
 				this.snackBar.open("Site enregistré", "Ok");
 				this.dialogRef.close(true);
 			},
-			err => console.log() //this.loginRedirectionService.checkStatus(err)
+			err => this.snackBar.open("Impossible d'enregistrer le site", "Ok") //this.loginRedirectionService.checkStatus(err)
 		);
 	}
 }
