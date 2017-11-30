@@ -2,7 +2,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
-import { MaterialModule } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ChartsModule } from "ng2-charts";
 import "hammerjs";
@@ -16,11 +15,15 @@ import { DashboardIncomeComponent } from "./dashboard-income/dashboard-income.co
 import { SiteDetailsComponent } from "./site-details/site-details.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SignupComponent } from "./signup/signup.component";
-import { WebsiteManagmentComponent } from "./website-managment/website-managment.component";
 import { LoginComponent } from "./login/login.component";
 import { LogoutComponent } from "./logout/logout.component";
+import { ConfirmationDialog } from "./confirmationDialog/confirmationDialog";
+import { WebsiteManagmentComponent } from "./website-managment/website-managment.component";
 import { WebsiteManagmentAddComponent } from "./website-managment-add/website-managment-add.component";
 import { WebsiteManagmentEditComponent } from "./website-managment-edit/website-managment-edit.component";
+import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
+import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { MaterialModule } from "./material/material.module";
 
 @NgModule({
 	declarations: [
@@ -35,7 +38,10 @@ import { WebsiteManagmentEditComponent } from "./website-managment-edit/website-
 		LogoutComponent,
 		WebsiteManagmentComponent,
 		WebsiteManagmentAddComponent,
-		WebsiteManagmentEditComponent
+		WebsiteManagmentEditComponent,
+		ConfirmationDialog,
+		ForgotPasswordComponent,
+		ResetPasswordComponent
 	],
 	imports: [
 		BrowserModule,
@@ -43,11 +49,11 @@ import { WebsiteManagmentEditComponent } from "./website-managment-edit/website-
 		HttpModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
-		MaterialModule,
-		ChartsModule
+		ChartsModule,
+		MaterialModule
 	],
 	providers: [],
-	entryComponents: [WebsiteManagmentEditComponent],
+	entryComponents: [WebsiteManagmentEditComponent, ConfirmationDialog],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}

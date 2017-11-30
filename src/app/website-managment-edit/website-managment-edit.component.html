@@ -1,34 +1,41 @@
 <h3>Site informations : </h3>
 <form  (ngSubmit)="onSubmit()" #editSiteForm="ngForm" class="addSiteForm">
 <p>
-  <md-input-container class="example-full-width">
-    <input required disabled mdInput placeholder="Id" [(ngModel)]="site.ID_WEBSITE" name="ID_WEBSITE" id="ID_WEBSITE">
-  </md-input-container>
+  <mat-input-container class="example-full-width">
+    <input required disabled matInput placeholder="Id" [(ngModel)]="site.ID_WEBSITE" name="ID_WEBSITE" id="ID_WEBSITE">
+  </mat-input-container>
 </p>
 <p>
-  <md-input-container class="example-full-width">
-    <input required mdInput placeholder="Nom" [(ngModel)]="site.NAME" name="NAME" id="NAME">
-  </md-input-container>
+  <mat-input-container class="example-full-width">
+    <input required matInput placeholder="Nom" [(ngModel)]="site.NAME" name="NAME" id="NAME">
+  </mat-input-container>
 </p>
 <p>
-  <md-input-container class="example-full-width">
-    <input required disable mdInput placeholder="Url" [(ngModel)]="site.URL" name="URL" id="URL">
-  </md-input-container>
+  <mat-input-container class="example-full-width">
+    <input required disable matInput placeholder="Url" [(ngModel)]="site.URL" name="URL" id="URL">
+  </mat-input-container>
 </p>
 
 <p>
-  <md-input-container class="example-full-width">
-    <input required disable mdInput placeholder="Script" [(ngModel)]="site.script" name="script" id="script">
-  </md-input-container>
+  <mat-input-container class="example-full-width">
+    <input required disable matInput placeholder="Script" [(ngModel)]="site.script" name="script" id="script">
+  </mat-input-container>
 </p>
 <!-- <p>
-  Site Enable : <md-slide-toggle ngDefaultControl [(ngModel)]="site.IS_ACTIVE" name="enable" [checked]="site.IS_ACTIVE"></md-slide-toggle>
+  Site Enable : <mat-slide-toggle ngDefaultControl [(ngModel)]="site.IS_ACTIVE" name="enable" [checked]="site.IS_ACTIVE"></mat-slide-toggle>
 </p> -->
 <!-- <hr> -->
 <h4>Crypto Monnaies :</h4>
 <p *ngFor="let currency of site.CRYPTO_CURRENCY_WEBSITEs">
-    <b>{{ currency.ID_CRYPTO }} :</b> <md-slide-toggle ngDefaultControl [(ngModel)]="currency.IS_ENABLE" name="enable" [checked]="currency.IS_ENABLE"></md-slide-toggle>
+    <b>{{ currency.ID_CRYPTO }} :</b>
+    <!-- <mat-slide-toggle ngDefaultControl [(ngModel)]="currency.IS_ENABLE" name="enable" [checked]="currency.IS_ENABLE"></mat-slide-toggle> -->
+    <mat-slide-toggle
+    name="currency"
+    [(ngModel)]="currency.IS_ENABLE"
+    [checked]="checked">
+  Slide me!
+</mat-slide-toggle>
 </p>
-<button md-button md-dialog-close>Fermer</button>
-<button type="submit" md-raised-button [disabled]="!editSiteForm.form.valid" class="submit-btn">Enregistrer</button>
+<button mat-button mat-dialog-close>Fermer</button>
+<button type="submit" mat-raised-button [disabled]="!editSiteForm.form.valid" class="submit-btn">Enregistrer</button>
 </form>

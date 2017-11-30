@@ -7,17 +7,17 @@
     <h3>Connection</h3>
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
       <p>
-        <md-input-container class="example-full-width">
-          <input required mdInput type="email" placeholder="Email" [(ngModel)]="login.EMAIL_ADDRESS" name="email" id="email">
-        </md-input-container>
+        <mat-form-field class="example-full-width">
+          <input required matInput type="email" placeholder="Email" [(ngModel)]="login.EMAIL_ADDRESS" name="email" id="email">
+        </mat-form-field>
       </p>
       <p>
-        <md-input-container class="example-full-width">
-          <input required mdInput type="password" placeholder="Mot de passe" [(ngModel)]="login.HASH_PASSWORD" name="password" id="password">
-        </md-input-container>
+        <mat-form-field class="example-full-width">
+          <input required matInput type="password" placeholder="Mot de passe" [(ngModel)]="login.HASH_PASSWORD" name="password" id="password">
+        </mat-form-field>
       </p>
-      <a href="/signup" md-raised-button class="signup-btn">Créer un compte</a>
-      <button type="submit" md-raised-button [disabled]="!loginForm.form.valid" class="submit-btn">Se connecter</button>
+      <a href="/signup" mat-raised-button class="signup-btn">Créer un compte</a>
+      <button type="submit" mat-raised-button [disabled]="!loginForm.form.valid" class="submit-btn">Se connecter</button>
     </form>
   </div>
 </div>

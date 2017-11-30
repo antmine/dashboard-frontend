@@ -3,22 +3,22 @@
   <div class="col-md-offset-4 col-md-4">
     <h3>Gestion des sites</h3>
     <div class="websites-container">
-      <a [routerLink]="['/website/add']" md-raised-button>Ajouter</a>
-      <md-list>
-        <md-list-item *ngFor="let row of data">
-          <h3 md-line> {{row.NAME}} </h3>
-          <p md-line>
+      <a [routerLink]="['/website/add']" mat-raised-button>Ajouter</a>
+      <mat-list>
+        <mat-list-item *ngFor="let row of data">
+          <h3 mat-line> {{row.NAME}} </h3>
+          <p mat-line>
             <span> {{row.URL}} </span>
             <span class="demo-2"> -- {{row.IS_ACTIVE}} </span>
           </p>
-          <button md-icon-button (click)="displayWebsite(row);">
-            <md-icon>info</md-icon>
+          <button mat-icon-button (click)="displayWebsite(row);">
+            <mat-icon>info</mat-icon>
           </button>
-          <button md-icon-button (click)="deleteWebsite(row)">
-            <md-icon>delete</md-icon>
+          <button mat-icon-button (click)="deleteWebsite(row)">
+            <mat-icon>delete</mat-icon>
           </button>
-        </md-list-item>
-      </md-list>
+        </mat-list-item>
+      </mat-list>
     </div>
   </div>
 </div>

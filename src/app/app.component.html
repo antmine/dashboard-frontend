@@ -1,60 +1,83 @@
 <div fullscreen>
-  <md-toolbar md-scroll-shrink color="primary">
-    <button md-button (click)="sidenav.toggle()"><md-icon>view_quilt</md-icon></button>
+  <mat-toolbar mat-scroll-shrink color="primary">
+    <button mat-button (click)="sidenav.toggle()"><mat-icon>view_quilt</mat-icon></button>
     <a class="home-btn"[routerLink]="['/dashboard']">AntMine DashBoard</a>
     <span class="example-spacer"></span>
-    <button md-icon-button [mdMenuTriggerFor]="menu">
-      <md-icon>more_vert</md-icon>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
     </button>
-    <md-menu #menu="mdMenu">
-      <a href="logout" md-menu-item>
-        <md-icon>power_settings_new</md-icon>
-        <span>Logout</span>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Redial</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voicemail</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav class="mat-sidenav-left" mode="side" opened="false">
+
+      <mat-toolbar color="warm">
+        <h3 class="mat-toolbar-tools">Gestion du compte</h3>
+      </mat-toolbar>
+
+
+      <mat-list>
+        <h3 mat-subheader>Mon compte</h3>
+
+        <a class="list-item-link" [routerLink]="['/dashboard']">
+          <mat-list-item>
+            <mat-icon mat-list-icon>home</mat-icon>
+            <h4 mat-line>Dashboard</h4>
+          </mat-list-item>
+        </a>
+
+        <a class="list-item-link" [routerLink]="['/profile']">
+          <mat-list-item>
+            <mat-icon mat-list-icon>person</mat-icon>
+            <h4 mat-line>Profil</h4>
+          </mat-list-item>
+        </a>
+
+        <a class="list-item-link" [routerLink]="['/website']">
+          <mat-list-item>
+            <mat-icon mat-list-icon>language</mat-icon>
+            <h4 mat-line>Mes sites web</h4>
+          </mat-list-item>
+        </a>
+
+        <mat-list-item>
+          <mat-icon mat-list-icon>credit_card</mat-icon>
+          <h4 mat-line>Solde et portefeuilles</h4>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+
+        <h3 mat-subheader>Autre</h3>
+
+        <a class="list-item-link">
+        <mat-list-item>
+          <mat-icon mat-list-icon>import_contacts</mat-icon>
+          <h4 mat-line>Manuel utilisateur</h4>
+        </mat-list-item>
       </a>
-    </md-menu>
-  </md-toolbar>
-
-  <md-sidenav-container class="sidenav-container">
-    <md-sidenav #sidenav class="md-sidenav-left" mode="side" opened="false">
-
-      <md-toolbar color="warm">
-        <h3 class="md-toolbar-tools">Gestion du compte</h3>
-      </md-toolbar>
-
-      <md-nav-list>
-        <a [routerLink]="['/profile']">
-          <md-list-item>
-            <md-icon md-list-icon>account_circle</md-icon>
-            <h4 md-line>Profil et préferences</h4>
-          </md-list-item>
-        </a>
-        <a [routerLink]="['/website']">
-          <md-list-item>
-            <md-icon md-list-icon>settings</md-icon>
-            <h4 md-line >Gestion site web</h4>
-          </md-list-item>
-        </a>
-        <a>
-          <md-list-item>
-            <md-icon md-list-icon>account_balance_wallet</md-icon>
-            <h4 md-line>Solde et portefeuilles</h4>
-          </md-list-item>
-        </a>
-        <a href="https://epitechfr-my.sharepoint.com/personal/aljosha_armitano_epitech_eu/_layouts/15/guestaccess.aspx?docid=08e557547c7154ba9a46337e59851b9f8&authkey=AVejU1hyESlLXX1jZ0JLiRU">
-          <md-list-item>
-            <md-icon md-list-icon>info_outline</md-icon>
-            <h4 md-line>Manuel utilisateur</h4>
-          </md-list-item>
-        </a>
-      </md-nav-list>
-    </md-sidenav>
-
+      </mat-list>
+    </mat-sidenav>
+    {{ loading }}
     <div class="example-sidenav-content">
-      <div class="loading-overlay" *ngIf="loading">
-        <md-spinner></md-spinner>
-      </div>
+      <span id="loader" *ngIf="objLoaderStatus">
+        <mat-spinner></mat-spinner>
+      </span>
       <router-outlet></router-outlet>
     </div>
-  </md-sidenav-container>
+  </mat-sidenav-container>
 
 </div>

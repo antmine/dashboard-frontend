@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, AfterViewInit } from "@angular/core";
 import { RequestOptions, Headers, Http, Response } from "@angular/http";
 import { LoginRedirectionService } from "app/service/login-redirection/login-redirection.service";
 import { WebsiteManagmentEditComponent } from "../website-managment-edit/website-managment-edit.component";
-import { MdSnackBar, MdDialogRef } from "@angular/material";
-import { MaterialModule, MdDialog } from "@angular/material";
+import { MatSnackBar, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { LoaderService } from "../service/loader.service";
 import { Router, Event as RouterEvent } from "@angular/router";
+import { ConfirmationDialog } from "../confirmationDialog/confirmationDialog";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/toPromise";
 import { textDef } from "@angular/core/src/view";
@@ -16,30 +17,37 @@ import { Site } from "../models/site";
 	styleUrls: ["./website-managment.component.css"],
 	providers: [LoginRedirectionService]
 })
-export class WebsiteManagmentComponent implements OnInit {
+export class WebsiteManagmentComponent implements AfterViewInit {
 	public data;
 	private dialogRef;
+	private confirmationDialog: MatDialogRef<ConfirmationDialog>;
 
 	constructor(
 		private http: Http,
-		public dialog: MdDialog,
-		public snackBar: MdSnackBar,
-		private loginRedirectionService: LoginRedirectionService
+		public dialog: MatDialog,
+		public snackBar: MatSnackBar,
+		private loginRedirectionService: LoginRedirectionService,
+		private loaderService: LoaderService
 	) {}
 
-	ngOnInit() {
-		this.getWebsites();
+	ngAfterViewInit() {
+		setTimeout(_=> this.getWebsites());
 	}
 
 	displayWebsite(row) {
+		this.loaderService.displayLoader(true);
 		let url = "http://back.dashboard.antmine.io/website/" + row.ID_WEBSITE;
 		let headers = new Headers({ "Content-Type": "application/json" });
 		let options = new RequestOptions({
 			headers: headers,
 			withCredentials: true
 		});
-		this.http.get(url, options).map(response => response.json()).subscribe(
+		this.http
+		.get(url, options)
+		.map(response => response.json())
+		.subscribe(
 			res => {
+				this.loaderService.displayLoader(false);
 				this.dialogRef = this.dialog.open(WebsiteManagmentEditComponent);
 				this.dialogRef.afterClosed().subscribe(res => {
 					if (res) this.getWebsites();
@@ -47,21 +55,43 @@ export class WebsiteManagmentComponent implements OnInit {
 				this.getScript();
 				this.dialogRef.componentInstance.site = res;
 			},
-			err => this.loginRedirectionService.checkStatus(err)
+			err => {
+				this.loaderService.displayLoader(false);
+				this.loginRedirectionService.checkStatus(err)
+			}
 		);
 	}
 
 	deleteWebsite(row) {
-		let url = "http://back.dashboard.antmine.io/website/" + row.ID_WEBSITE;
-		let options = new RequestOptions({ withCredentials: true });
 
-		this.http.delete(url, options).map(res => res.text()).subscribe(
-			data => {
-				this.snackBar.open("Site supprimé", "Ok");
-				this.getWebsites();
-			},
-			err => this.loginRedirectionService.checkStatus(err)
-		);
+		this.confirmationDialog = this.dialog.open(ConfirmationDialog, {
+			disableClose: false
+		});
+		this.confirmationDialog.componentInstance.confirmMessage = "Etes vous sûr de vouloir supprimer ce site ?"
+
+		this.confirmationDialog.afterClosed().subscribe(result => {
+			if(result) {
+				this.loaderService.displayLoader(true);
+				let url = "http://back.dashboard.antmine.io/website/" + row.ID_WEBSITE;
+				let options = new RequestOptions({ withCredentials: true });
+
+				this.http
+				.delete(url, options)
+				.map(res => res.text())
+				.subscribe(
+					data => {
+						this.loaderService.displayLoader(false);
+						this.snackBar.open("Site supprimé", "Ok");
+						this.getWebsites();
+					},
+					err => {
+						this.loaderService.displayLoader(false);
+						this.loginRedirectionService.checkStatus(err)
+					}
+				);
+			}
+			this.confirmationDialog = null;
+		});
 	}
 
 	getWebsites() {
@@ -71,7 +101,10 @@ export class WebsiteManagmentComponent implements OnInit {
 			headers: headers,
 			withCredentials: true
 		});
-		this.http.get(url, options).map(response => response.json()).subscribe(
+		this.http
+		.get(url, options)
+		.map(response => response.json())
+		.subscribe(
 			res => {
 				this.data = res;
 				console.log(this.data);
@@ -85,13 +118,17 @@ export class WebsiteManagmentComponent implements OnInit {
 	}
 
 	getScript() {
+		//this.loaderService.displayLoader(true);
 		let url = "http://back.dashboard.antmine.io/code";
 		let headers = new Headers({ "Content-Type": "application/json" });
 		let options = new RequestOptions({
 			headers: headers,
 			withCredentials: true
 		});
-		this.http.get(url, options).map((res: Response) => res).subscribe(data => {
+		this.http
+		.get(url, options)
+		.map((res: Response) => res)
+		.subscribe(data => {
 			this.dialogRef.componentInstance.site.script = data["_body"];
 		});
 	}

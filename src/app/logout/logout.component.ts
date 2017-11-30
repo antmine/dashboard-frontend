@@ -12,7 +12,7 @@ import {
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
-import { MdSnackBar } from "@angular/material";
+import { MatSnackBar } from "@angular/material";
 
 @Component({
 	selector: "app-logout",
@@ -23,7 +23,7 @@ export class LogoutComponent implements OnInit {
 	constructor(
 		private http: Http,
 		private router: Router,
-		public snackBar: MdSnackBar
+		public snackBar: MatSnackBar
 	) {
 		this.logout().subscribe(
 			success => {
