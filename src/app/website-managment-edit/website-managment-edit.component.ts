@@ -1,9 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import { RequestOptions, Headers, Http, Response } from "@angular/http";
 //import { LoginRedirectionService } from "../service/login-redirection/login-redirection.service";
-import { MdSnackBar, MdDialogRef } from "@angular/material";
-import { MaterialModule, MdDialog } from "@angular/material";
-
+import { MatSnackBar, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { Site } from "../models/site";
 
 @Component({
@@ -16,21 +14,34 @@ export class WebsiteManagmentEditComponent {
 
 	constructor(
 		private http: Http,
-		public snackBar: MdSnackBar,
+		public snackBar: MatSnackBar,
 		//private loginRedirectionService: LoginRedirectionService,
-		public dialogRef: MdDialogRef<WebsiteManagmentEditComponent>
+		public dialogRef: MatDialogRef<WebsiteManagmentEditComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: any
 	) {}
+
+	onNoClick(): void {
+		this.dialogRef.close();
+	}
+
+	closeDialog() {
+		console.log("Closing Dialog !");
+		this.dialogRef.close();
+	}
 
 	onSubmit() {
 		console.log(this.site);
 		let url =
-			"http://back.dashboard.antmine.io/website/" + this.site.ID_WEBSITE;
+		"http://back.dashboard.antmine.io/website/" + this.site.ID_WEBSITE;
 		let headers = new Headers({ "Content-Type": "application/json" });
 		let options = new RequestOptions({
 			headers: headers,
 			withCredentials: true
 		});
-		this.http.put(url, this.site, options).map(res => res.text()).subscribe(
+		this.http
+		.put(url, this.site, options)
+		.map(res => res.text())
+		.subscribe(
 			data => {
 				this.snackBar.open("Site enregistré", "Ok");
 				this.dialogRef.close(true);

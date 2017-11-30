@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { MdSnackBar, MdDialogRef } from "@angular/material";
+import { MatSnackBar } from "@angular/material";
 import { RequestOptions, Headers, Http, Response } from "@angular/http";
 import { LoginRedirectionService } from "app/service/login-redirection/login-redirection.service";
+import { LoaderService } from "../service/loader.service";
 
 import "rxjs/add/operator/toPromise";
 import { Observable } from "rxjs/Observable";
@@ -30,8 +31,9 @@ export class WebsiteManagmentAddComponent implements OnInit {
 	constructor(
 		private http: Http,
 		private router: Router,
-		public snackBar: MdSnackBar,
-		private loginRedirectionService: LoginRedirectionService
+		public snackBar: MatSnackBar,
+		private loginRedirectionService: LoginRedirectionService,
+		private loaderService: LoaderService
 	) {}
 
 	ngOnInit() {}
@@ -39,9 +41,14 @@ export class WebsiteManagmentAddComponent implements OnInit {
 	onSubmit() {
 		console.log(this.site);
 
+		this.loaderService.displayLoader(true);
 		this.create(this.site).subscribe(
-			success => this.router.navigate(["website"]),
+			success => {
+				this.loaderService.displayLoader(false);
+				this.router.navigate(["website"])
+			},
 			error => {
+				this.loaderService.displayLoader(false);
 				console.log(error);
 				this.snackBar.open("Erreur lors de la création", "Ok");
 				this.loginRedirectionService.checkStatus(error);

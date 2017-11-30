@@ -5,28 +5,28 @@
       <h3>Ajouter un site</h3>
       <form  (ngSubmit)="onSubmit()" #addSiteForm="ngForm" class="addSiteForm">
         <p>
-          <md-input-container>
-            <input required mdInput placeholder="Nom" [(ngModel)]="site.NAME" name="name" id="name">
-          </md-input-container>
+          <mat-input-container>
+            <input required matInput placeholder="Nom" [(ngModel)]="site.NAME" name="name" id="name">
+          </mat-input-container>
         </p>
         <p>
-          <md-input-container>
-            <input required mdInput placeholder="Url" [(ngModel)]="site.URL" name="url" id="url">
-          </md-input-container>
+          <mat-input-container>
+            <input required matInput placeholder="Url" [(ngModel)]="site.URL" name="url" id="url">
+          </mat-input-container>
         </p>
         <hr>
         <h4>Crypto Monnaies :</h4>
         <p *ngFor="let currency of site.CRYPTO_CURRENCY_WEBSITEs">
-            <b>{{ currency.ID_CRYPTO }} :</b> <md-slide-toggle ngDefaultControl [(ngModel)]="currency.IS_ENABLE" name="enable" [checked]="currency.IS_ENABLE"></md-slide-toggle>
+            <b>{{ currency.ID_CRYPTO }} :</b> <mat-slide-toggle ngDefaultControl [(ngModel)]="currency.IS_ENABLE" name="enable" [checked]="currency.IS_ENABLE"></mat-slide-toggle>
         </p>
         <!-- <p>
-          <md-select required placeholder="Currency" [(ngModel)]="site.CryptoCurrency" name="currency">
-            <md-option *ngFor="let currency of currencies" [value]="currency.id"> {{ currency.name }} </md-option>
-          </md-select>
+          <mat-select required placeholder="Currency" [(ngModel)]="site.CryptoCurrency" name="currency">
+            <mat-option *ngFor="let currency of currencies" [value]="currency.id"> {{ currency.name }} </mat-option>
+          </mat-select>
         </p> -->
         <p>
-          <button [routerLink]="['/website']" md-raised-button>Retour</button>
-          <button type="submit" md-raised-button [disabled]="!addSiteForm.form.valid" class="submit-btn">Enregistrer</button>
+          <button [routerLink]="['/website']" mat-raised-button>Retour</button>
+          <button type="submit" mat-raised-button [disabled]="!addSiteForm.form.valid" class="submit-btn">Enregistrer</button>
         </p>
       </form>
     </div>

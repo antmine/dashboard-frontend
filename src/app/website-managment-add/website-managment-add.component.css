@@ -1,7 +1,7 @@
-.addSiteForm > p > md-input-container {
+.addSiteForm > p > mat-input-container {
 	width: 100%;
 }
 
-md-slide-toggle {
+mat-slide-toggle {
 	margin-top: 15px;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { MdSnackBar } from "@angular/material";
+import { MatSnackBar } from "@angular/material";
 import {
 	RequestOptions,
 	Request,
@@ -12,6 +12,7 @@ import {
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
+import { LoaderService } from "../service/loader.service";
 
 import { Login } from "../models/login";
 
@@ -26,19 +27,28 @@ export class LoginComponent implements OnInit {
 	constructor(
 		private http: Http,
 		private router: Router,
-		public snackBar: MdSnackBar
+		public snackBar: MatSnackBar,
+		private loaderService: LoaderService
 	) {}
 
 	ngOnInit() {}
 
 	onSubmit() {
 		this.create(this.login).subscribe(
-			success => this.router.navigate(["dashboard"]),
-			error => this.snackBar.open("Identifiants incorrects", "Ok")
+			success => {
+				this.loaderService.displayLoader(false);
+				this.router.navigate(["dashboard"]);
+			},
+			error => {
+				this.snackBar.open("Identifiants incorrects", "Ok");
+				this.loaderService.displayLoader(false);
+			}
 		);
 	}
 
 	create(data): Observable<Login> {
+		console.log(this.login);
+		this.loaderService.displayLoader(true);
 		let url = "http://back.dashboard.antmine.io:80/client/login";
 		let headers = new Headers({ "Content-Type": "application/json" });
 		let options = new RequestOptions({
@@ -58,8 +68,10 @@ export class LoginComponent implements OnInit {
 
 	private handleError(error: Response | any) {
 		let errMsg;
+		this.loaderService.displayLoader(false);
 		if (error instanceof Response) {
 			const body = error.json() || "";
+			this.snackBar.open("Identifiants incorrects", "Ok");
 			console.log(body);
 			errMsg = body;
 		} else {

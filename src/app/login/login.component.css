@@ -1,12 +1,11 @@
-
 .page-wrapper {
-    height: 50%;
-    width: 50%;
-    margin: auto auto auto auto;
-    text-align: center;
+	height: 50%;
+	width: 50%;
+	margin: auto auto auto auto;
+	text-align: center;
 }
 
-.login-form > p > md-input-container {
+.login-form > p > mat-form-field {
 	width: 100%;
 }
 

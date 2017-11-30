@@ -8,12 +8,16 @@ import { WebsiteManagmentComponent } from "./website-managment/website-managment
 import { LoginComponent } from "./login/login.component";
 import { WebsiteManagmentAddComponent } from "./website-managment-add/website-managment-add.component";
 import { LogoutComponent } from "./logout/logout.component";
+import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
+import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 
 const routes: Routes = [
 	{ path: "", redirectTo: "/login", pathMatch: "full" },
 	{ path: "dashboard", component: DashboardComponent },
 	{ path: "site/:owner/:id", component: SiteDetailsComponent },
 	{ path: "signup", component: SignupComponent },
+	{ path: "forgot-password", component: ForgotPasswordComponent },
+	{ path: "reset-password", component: ResetPasswordComponent },
 	{ path: "login", component: LoginComponent },
 	{ path: "logout", component: LogoutComponent },
 	{ path: "profile", component: ProfileComponent },

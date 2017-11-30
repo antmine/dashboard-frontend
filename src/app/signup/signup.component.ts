@@ -8,12 +8,13 @@ import {
 	Http,
 	Response
 } from "@angular/http";
-import { MdSnackBar } from "@angular/material";
+import { MatSnackBar, MatProgressSpinnerModule } from "@angular/material";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 
 import { Client } from "../models/client";
+import { LoaderService } from "../service/loader.service";
 
 @Component({
 	selector: "app-signup",
@@ -26,19 +27,26 @@ export class SignupComponent implements OnInit {
 	constructor(
 		private http: Http,
 		private router: Router,
-		public snackBar: MdSnackBar
+		public snackBar: MatSnackBar,
+		private loaderService: LoaderService
 	) {}
 
 	ngOnInit() {}
 
 	onSubmit() {
+		this.loaderService.displayLoader(true);
 		this.create(this.client).subscribe(
-			success => this.router.navigate(["login"]),
-			error =>
+			success => {
+				this.loaderService.displayLoader(false);
+				this.router.navigate(["login"]);
+			},
+			error => {
+				this.loaderService.displayLoader(false);
 				this.snackBar.open(
 					"Un compte existe déjà avec cette adresse mail",
 					"Ok"
-				)
+				);
+			}
 		);
 	}
 
@@ -58,6 +66,7 @@ export class SignupComponent implements OnInit {
 	}
 
 	private handleError(error: Response | any) {
+		this.loaderService.displayLoader(true);
 		let errMsg;
 		if (error instanceof Response) {
 			const body = error.json() || "";
