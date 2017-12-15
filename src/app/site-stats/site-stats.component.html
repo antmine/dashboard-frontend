@@ -1,0 +1,26 @@
+Stats of : {{ site_id }}
+
+<div *ngIf="isDataAvailable">
+  Statistiques sur
+  <mat-form-field>
+    <mat-select [(ngModel)]="days" (ngModelChange)="onChange()">
+      <mat-option selected value="7">7 jours</mat-option>
+      <mat-option value="14">14 jours</mat-option>
+      <mat-option value="31">1 mois</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <canvas baseChart width="400" height="100"
+  *ngIf="lineChartData"
+  [datasets]="lineChartData"
+  [labels]="lineChartLabels"
+  [options]="lineChartOptions"
+  [colors]="lineChartColors"
+  [legend]="lineChartLegend"
+  [chartType]="lineChartType"
+  (chartHover)="chartHovered($event)"
+  (chartClick)="chartClicked($event)"></canvas>
+</div>
+
+<div *ngIf="!isDataAvailable" style="height: 300px">
+  <mat-spinner></mat-spinner>
+</div>
