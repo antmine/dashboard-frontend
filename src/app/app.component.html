@@ -54,10 +54,12 @@
           </mat-list-item>
         </a>
 
-        <mat-list-item>
-          <mat-icon mat-list-icon>credit_card</mat-icon>
-          <h4 mat-line>Solde et portefeuilles</h4>
-        </mat-list-item>
+        <a class="list-item-link" [routerLink]="['/wallet']">
+          <mat-list-item>
+            <mat-icon mat-list-icon>credit_card</mat-icon>
+            <h4 mat-line>Solde et portefeuilles</h4>
+          </mat-list-item>
+        </a>
 
         <mat-divider></mat-divider>
 
