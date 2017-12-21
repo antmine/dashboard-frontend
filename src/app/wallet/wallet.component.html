@@ -3,17 +3,14 @@
         <form (ngSubmit)="onSubmit()" #walletForm="ngForm" class="wallet-form">
           <h3>Solde Antmine</h3>
           <label style="margin-right: 5%;">Bitcoin</label>
-          <mat-input-container class="example-full-width">
-            <input disabled matInput placeholder="3" [(ngModel)]="client.SOLDE" name="solde" id="solde">
-          </mat-input-container>
-          <br>
+            <label mat-line> {{bitcoinAmount}} </label>
           <br>
           <h3>Transfert</h3>
           <mat-input-container class="example-full-width">
-            <input required matInput placeholder="Adresse portefeuille" [(ngModel)]="client.ADDR" name="adresse" id="adresse">
+            <input required matInput placeholder="Adresse portefeuille" [(ngModel)]="client.ADDR" name="address" id="address">
           </mat-input-container>
           <mat-input-container class="example-full-width">
-            <input required matInput placeholder="Montant" [(ngModel)]="client.MONTANT" name="montant" id="montant">
+            <input required matInput placeholder="Montant" [(ngModel)]="client.AMOUNT" name="amount" id="amount">
           </mat-input-container>
           <button type="submit" mat-raised-button [disabled]="!walletForm.form.valid" class="submit-btn">Transert</button>
         </form>
