@@ -10,7 +10,7 @@
             <input required matInput placeholder="Adresse portefeuille" [(ngModel)]="client.ADDR" name="address" id="address">
           </mat-input-container>
           <mat-input-container class="example-full-width">
-            <input required matInput placeholder="Montant" [(ngModel)]="client.AMOUNT" name="amount" id="amount">
+            <input required matInput placeholder="Montant" [(ngModel)]="client.BALANCE" name="balance" id="balance">
           </mat-input-container>
           <button type="submit" mat-raised-button [disabled]="!walletForm.form.valid" class="submit-btn">Transert</button>
         </form>

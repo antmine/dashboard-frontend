@@ -89,7 +89,7 @@ export class WalletComponent implements OnInit {
 				},
 				err => {
 					this.loaderService.displayLoader(false);
-					this.loginRedirectionService.checkStatus(err)
+					this.loginRedirectionService.checkStatus(err);
 				}
 			);
 		}
@@ -97,7 +97,7 @@ export class WalletComponent implements OnInit {
 
 	onSubmit() {
 		this.loaderService.displayLoader(true);
-		/*let url = "http://back.dashboard.antmine.io/client";
+		let url = "http://back.dashboard.antmine.io/wallet/transert";
 		let headers = new Headers({ "Content-Type": "application/json" });
 		let options = new RequestOptions({
 			headers: headers,
@@ -112,12 +112,12 @@ export class WalletComponent implements OnInit {
 					this.snackBar.open("Le transfert a été réalisé", "Ok");
 				},
 				err => {
-					console.log("POST request error: " + err);
-					this.snackBar.open("Le transfert a échoué", "Ok");
+					console.log("POST request error: " + err.message);
+					this.snackBar.open(err.message, "Ok");
 					this.loginRedirectionService.checkStatus(err);
 					this.loaderService.displayLoader(false);
 				}
-			);*/
+			);
 	}
 
 
