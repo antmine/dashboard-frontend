@@ -57,7 +57,6 @@ export class WalletComponent implements OnInit {
 		.subscribe(
 			res => {
 				this.data = res;
-				console.log(this.data);
 				this.getAmountBitcoin(this.data);
 			},
 			err => {
@@ -69,9 +68,7 @@ export class WalletComponent implements OnInit {
 	}
 
 	private getAmountBitcoin(data) {
-		console.log("getting all websites");
 		for (var i = 0; i < data.length; ++i) {
-			console.log(this.data[i].ID_WEBSITE);
 			let url = "http://back.dashboard.antmine.io/website/" + this.data[i].ID_WEBSITE;
 			let headers = new Headers({ "Content-Type": "application/json" });
 			let options = new RequestOptions({
@@ -85,7 +82,6 @@ export class WalletComponent implements OnInit {
 				res => {
 					this.loaderService.displayLoader(false);
 					this.bitcoinAmount += res.BITCOIN_AMOUNT;
-					console.log(this.bitcoinAmount);
 				},
 				err => {
 					this.loaderService.displayLoader(false);
@@ -97,7 +93,7 @@ export class WalletComponent implements OnInit {
 
 	onSubmit() {
 		this.loaderService.displayLoader(true);
-		let url = "http://back.dashboard.antmine.io/wallet/transert";
+		let url = "http://back.dashboard.antmine.io/wallet/transfert";
 		let headers = new Headers({ "Content-Type": "application/json" });
 		let options = new RequestOptions({
 			headers: headers,
@@ -105,15 +101,16 @@ export class WalletComponent implements OnInit {
 		});
 		this.http
 			.post(url, this.client, options)
-			.map(res => res.text())
+			.map(res => res.json())
 			.subscribe(
 				data => {
 					this.loaderService.displayLoader(false);
 					this.snackBar.open("Le transfert a été réalisé", "Ok");
 				},
 				err => {
-					console.log("POST request error: " + err.message);
-					this.snackBar.open(err.message, "Ok");
+					var error = err._body.split('\"');
+					console.log(error);
+					this.snackBar.open("Erreur de transfert: "+error[5], "Ok");
 					this.loginRedirectionService.checkStatus(err);
 					this.loaderService.displayLoader(false);
 				}
