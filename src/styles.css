@@ -3,3 +3,7 @@
 .row{
   margin:0;
 }
+
+.mat-sidenav-content{
+	height: CALC(100% - 64px) !important;
+}

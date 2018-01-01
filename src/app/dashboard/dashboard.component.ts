@@ -3,6 +3,7 @@ import { RequestOptions, Headers, Http, Response } from "@angular/http";
 import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 import { Router } from "@angular/router";
 import { StatsWraper } from '../models/statsWraper';
+import { LoaderService } from "../service/loader.service";
 
 @Component({
 	selector: "app-dashboard",
@@ -12,7 +13,7 @@ import { StatsWraper } from '../models/statsWraper';
 export class DashboardComponent implements OnInit {
 	public sites
 	public siteAvailable = false
-	constructor(private router: Router, private http: Http) {}
+	constructor(private router: Router, private http: Http, private loaderService: LoaderService) {}
 
 	ngOnInit() {
 		this.getSites()
@@ -34,7 +35,9 @@ export class DashboardComponent implements OnInit {
 				console.log(this.sites)
 				this.siteAvailable = true
 			},
-			err => {}
+			err => {
+				this.siteAvailable = true
+			}
 		);
 	}
 }
