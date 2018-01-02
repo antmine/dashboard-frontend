@@ -3,3 +3,6 @@
     <app-site-stats [site_id]="site.ID_WEBSITE"></app-site-stats>
   </div>
 </div>
+<div *ngIf="sites && sites.length == 0" class="no-stats-available">
+  Vous n'avez pas encore de statistiques disponibles
+</div>

@@ -12,7 +12,15 @@
   padding: 0 14px;
 }
 
-.dashboard-panel{
+.dashboard-panel {
   padding:0;
   margin: 10px;
+}
+
+.no-stats-available {
+  text-align:center;
+  margin-top: 200px;
+  height: 400px;
+  font-family: serif;
+  font-size: 20px;
 }

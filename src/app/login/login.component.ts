@@ -34,20 +34,6 @@ export class LoginComponent implements OnInit {
 	ngOnInit() {}
 
 	onSubmit() {
-		this.create(this.login).subscribe(
-			success => {
-				this.loaderService.displayLoader(false);
-				this.router.navigate(["dashboard"]);
-			},
-			error => {
-				this.snackBar.open("Identifiants incorrects", "Ok");
-				this.loaderService.displayLoader(false);
-			}
-		);
-	}
-
-	create(data): Observable<Login> {
-		console.log(this.login);
 		this.loaderService.displayLoader(true);
 		let url = "http://back.dashboard.antmine.io:80/client/login";
 		let headers = new Headers({ "Content-Type": "application/json" });
@@ -55,14 +41,30 @@ export class LoginComponent implements OnInit {
 			headers: headers,
 			withCredentials: true
 		});
-		return this.http
-			.post(url, data, options)
-			.map(this.extractData)
-			.catch(this.handleError);
+
+		this.http.post(url, this.login, options).
+		map(response => response.json()).
+		subscribe((res) => {
+			console.log(res)
+			this.loaderService.displayLoader(false);
+			this.snackBar.dismiss()
+			this.router.navigate(["dashboard"]);
+		},
+		(err) => {
+			this.loaderService.displayLoader(false);
+			if (err.json().code == 10)
+				this.snackBar.open("Veuillez activer votre compte", "Ok");
+			else
+				this.snackBar.open("Identifiants incorrects", "Ok");
+		},
+		() => {
+			//console.log(this.data)
+		})
 	}
 
 	private extractData(res: Response) {
 		console.log(res);
+		this.snackBar.dismiss()
 		return res.json().data || {};
 	}
 
