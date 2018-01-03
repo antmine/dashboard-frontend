@@ -9,7 +9,7 @@
           <h3 mat-line> {{row.NAME}} </h3>
           <p mat-line>
             <span> {{row.URL}} </span>
-            <span class="demo-2"> -- {{row.IS_ACTIVE}} </span>
+            <span class="demo-2"> -- <span *ngIf="row.IS_ACTIVE">Activé</span><span *ngIf="!row.IS_ACTIVE">Désactivé</span> </span>
           </p>
           <button mat-icon-button (click)="displayWebsite(row);">
             <mat-icon>info</mat-icon>

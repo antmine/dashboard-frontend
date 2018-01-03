@@ -62,7 +62,8 @@ export class ResetPasswordComponent implements AfterViewInit {
 			},
 			err => {
 				console.log(err);
-				this.loaderService.displayLoader(false);
+				this.snackBar.open("Vous ne pouvez plus récupérer votre mot de passe", "Ok");
+				this.loaderService.displayLoader(false)
 				this.loginRedirectionService.checkStatus(err)
 			}
 		);
