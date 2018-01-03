@@ -25,6 +25,11 @@
       </p>
       <p>
         <mat-input-container class="example-full-width">
+          <input required matInput [(ngModel)]="passwordConfirm" type="password" placeholder="Confirmation du mot de passe" name="confirm_password">
+        </mat-input-container>
+      </p>
+      <p>
+        <mat-input-container class="example-full-width">
           <input required matInput type="date" placeholder="Date de naissance" [(ngModel)]="client.DATE_BIRTHDAY" name="birthday" id="birthday">
         </mat-input-container>
       </p>
@@ -47,7 +52,7 @@
         </mat-input-container></td>
       </tr></table>
       <a [routerLink]="['/login']" mat-raised-button class="login-btn">Déjà un compte ?</a>
-      <button type="submit" mat-raised-button [disabled]="!signupForm.form.valid" class="submit-btn">Créer mon compte</button>
+      <button type="submit" mat-raised-button [disabled]="!signupForm.form.valid || client.HASH_PASSWORD != passwordConfirm" class="submit-btn">Créer mon compte</button>
 
     </form>
 
