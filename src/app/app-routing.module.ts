@@ -10,6 +10,7 @@ import { WebsiteManagmentAddComponent } from "./website-managment-add/website-ma
 import { LogoutComponent } from "./logout/logout.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { WalletComponent } from "./wallet/wallet.component";
 
 const routes: Routes = [
 	{ path: "", redirectTo: "/login", pathMatch: "full" },
@@ -22,7 +23,8 @@ const routes: Routes = [
 	{ path: "logout", component: LogoutComponent },
 	{ path: "profile", component: ProfileComponent },
 	{ path: "website", component: WebsiteManagmentComponent },
-	{ path: "website/add", component: WebsiteManagmentAddComponent }
+	{ path: "website/add", component: WebsiteManagmentAddComponent },
+	{ path: "wallet", component: WalletComponent }
 ];
 
 @NgModule({

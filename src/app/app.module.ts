@@ -24,6 +24,7 @@ import { WebsiteManagmentAddComponent } from "./website-managment-add/website-ma
 import { WebsiteManagmentEditComponent } from "./website-managment-edit/website-managment-edit.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { WalletComponent } from "./wallet/wallet.component";
 import { MaterialModule } from "./material/material.module";
 
 @NgModule({
@@ -43,7 +44,8 @@ import { MaterialModule } from "./material/material.module";
 		ConfirmationDialog,
 		ForgotPasswordComponent,
 		ResetPasswordComponent,
-		SiteStatsComponent
+		SiteStatsComponent,
+		WalletComponent
 	],
 	imports: [
 		BrowserModule,
