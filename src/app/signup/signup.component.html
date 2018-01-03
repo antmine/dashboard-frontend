@@ -46,7 +46,7 @@
           <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
         </mat-input-container></td>
       </tr></table>
-      <a href="/login" mat-raised-button class="login-btn">Déjà un compte ?</a>
+      <a [routerLink]="['/login']" mat-raised-button class="login-btn">Déjà un compte ?</a>
       <button type="submit" mat-raised-button [disabled]="!signupForm.form.valid" class="submit-btn">Créer mon compte</button>
 
     </form>

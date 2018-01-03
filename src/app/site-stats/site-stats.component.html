@@ -1,0 +1,63 @@
+<mat-card *ngIf="isDataAvailable" class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title><h1><b>{{ site_data.NAME }}</b> <small>{{ site_data.ID_WEBSITE }}</small></h1></mat-card-title>
+    <mat-card-subtitle>{{ site_data.URL }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div class="row">
+      <div class="col-md-12">
+        <mat-form-field>
+          <mat-select ng-init="days" [(ngModel)]="days" (ngModelChange)="onChange()">
+            <mat-option *ngFor="let days_option of days_options" [value]="days_option.value" >
+              {{days_option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <h3>Nombre de visiteurs par Pays</h3>
+        <table matSort (matSortChange)="sortData($event)">
+          <tr>
+            <th>Pays</th>
+            <th>Nombre de visiteurs</th>
+          </tr>
+
+          <tr *ngFor="let data of site_data.COUNTRY_RANKINGs">
+            <td>{{data.COUNTRY}}</td>
+            <td style="text-align:right">{{data.NB_VISITOR_SUM}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <h3>Pages les plus vue</h3>
+        <table matSort (matSortChange)="sortData($event)">
+          <tr>
+            <th>Pages</th>
+            <th>Nombre de visiteurs</th>
+          </tr>
+
+          <tr *ngFor="let data of site_data.MOST_VIEWED_PAGEs">
+            <td>{{data.URL}}</td>
+            <td style="text-align:right">{{data.NB_VISITOR_SUM}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-12">
+        <div *ngIf="lineChartData?.length > 0">
+          <canvas baseChart width="400" height="100"
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </mat-card-content>
+</mat-card>

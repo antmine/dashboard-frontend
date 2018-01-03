@@ -40,7 +40,7 @@ export class ForgotPasswordComponent implements AfterViewInit {
     });
 
     this.http
-    .post(url, {"email_address" : this.email_address}, options)
+    .post(url, {"EMAIL_ADDRESS" : this.email_address}, options)
     .map(res => res.text())
     .subscribe(
       data => {

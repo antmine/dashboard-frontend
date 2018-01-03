@@ -12,6 +12,7 @@ import { AppComponent } from "./app.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { DashboardBrowsersComponent } from "./dashboard-browsers/dashboard-browsers.component";
 import { DashboardIncomeComponent } from "./dashboard-income/dashboard-income.component";
+import { SiteStatsComponent } from "./site-stats/site-stats.component";
 import { SiteDetailsComponent } from "./site-details/site-details.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SignupComponent } from "./signup/signup.component";
@@ -43,6 +44,7 @@ import { MaterialModule } from "./material/material.module";
 		ConfirmationDialog,
 		ForgotPasswordComponent,
 		ResetPasswordComponent,
+		SiteStatsComponent,
 		WalletComponent
 	],
 	imports: [

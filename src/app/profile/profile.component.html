@@ -14,7 +14,12 @@
       </p>
       <p>
         <mat-input-container class="example-full-width">
-          <input required matInput type="password" placeholder="Mot de passe" [(ngModel)]="client.password" name="password" id="password">
+          <input required matInput type="password" placeholder="Mot de passe" [(ngModel)]="client.CHECK_PASSWORD" name="password" id="password">
+        </mat-input-container>
+      </p>
+      <p>
+        <mat-input-container class="example-full-width">
+          <input matInput type="password" placeholder="Changer de mot de passe" [(ngModel)]="client.HASH_PASSWORD" name="password" id="password">
         </mat-input-container>
       </p>
       <p>

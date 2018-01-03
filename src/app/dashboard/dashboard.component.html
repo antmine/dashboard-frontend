@@ -1,26 +1,8 @@
-<div class="row">
-  <div class="col-lg-12">
-    <div class="dashboard-panel panel panel-default">
-      <div class="panel-heading">Revenus</div>
-      <div class="panel-body">
-        <app-dashboard-income></app-dashboard-income>
-      </div>
-    </div>
+<div *ngIf="siteAvailable" class="row">
+  <div *ngFor="let site of sites" class="col-lg-12">
+    <app-site-stats [site_id]="site.ID_WEBSITE"></app-site-stats>
   </div>
-  <div class="col-lg-3 col-mat-6">
-    <div class="dashboard-panel panel panel-default">
-      <div class="panel-heading">Naviguateurs</div>
-      <div class="panel-body">
-        <app-dashboard-browsers></app-dashboard-browsers>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-3 col-mat-6">
-    <div class="dashboard-panel panel panel-default">
-      <div class="panel-heading">Trafic</div>
-      <div class="panel-body">
-        <app-dashboard-browsers></app-dashboard-browsers>
-      </div>
-    </div>
-  </div>
+</div>
+<div *ngIf="sites && sites.length == 0" class="no-stats-available">
+  Vous n'avez pas encore de statistiques disponibles
 </div>

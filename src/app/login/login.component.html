@@ -16,7 +16,9 @@
           <input required matInput type="password" placeholder="Mot de passe" [(ngModel)]="login.HASH_PASSWORD" name="password" id="password">
         </mat-form-field>
       </p>
-      <a href="/signup" mat-raised-button class="signup-btn">Créer un compte</a>
+      <a [routerLink]="['/signup']" mat-raised-button class="signup-btn rigth">Créer un compte</a>
+      <a [routerLink]="['/forgot-password']" style="float:right">Mot de passe oublié</a>
+      <br><br>
       <button type="submit" mat-raised-button [disabled]="!loginForm.form.valid" class="submit-btn">Se connecter</button>
     </form>
   </div>
