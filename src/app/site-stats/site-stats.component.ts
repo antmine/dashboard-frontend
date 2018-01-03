@@ -19,7 +19,7 @@ export class SiteStatsComponent implements OnInit {
     {value: '31', viewValue: '1 mois'}
   ];
 
-  public days = 7
+  public days = this.days_options[0].value
 
   public site_data
 
@@ -60,7 +60,7 @@ export class SiteStatsComponent implements OnInit {
   init(){
     this.visitors = { data: [], label: "Visiteurs" }
     this.miners = { data: [], label: "Mineurs" }
-    this.averageTime = { data: [], label: "Temps moyen sur le site" }
+    this.averageTime = { data: [], label: "Temps moyen sur le site (en min)" }
     this.lineChartLabels = []
   }
 

@@ -13,6 +13,7 @@ export class Client {
 	public EMAIL_ADDRESS: string;
 	public DATE_BIRTHDAY: Date;
 	public HASH_PASSWORD: string;
+	public CHECK_PASSWORD: string;
 	public ADDRESS: Address;
 
 	constructor() {

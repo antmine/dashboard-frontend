@@ -76,7 +76,7 @@ export class ProfileComponent implements AfterViewInit {
 					this.loaderService.displayLoader(false);
 				},
 				err => {
-					this.snackBar.open("Il y a eu une erreur", "Ok")
+					this.snackBar.open("Mot de passe incorrect", "Ok")
 					this.loaderService.displayLoader(false);
 				}
 			);
