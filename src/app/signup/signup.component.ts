@@ -23,8 +23,6 @@ import { LoaderService } from "../service/loader.service";
 })
 export class SignupComponent implements OnInit {
 	client = new Client();
-	passwordConfirm = ""
-	error = 0
 
 	constructor(
 		private http: Http,
@@ -37,51 +35,19 @@ export class SignupComponent implements OnInit {
 
 	onSubmit() {
 		this.loaderService.displayLoader(true);
-
-
-		let url = "http://back.dashboard.antmine.io:80/client/signup";
-		let headers = new Headers({ "Content-Type": "application/json" });
-		let options = new RequestOptions({
-			headers: headers,
-			withCredentials: true
-		});
-		// this.http
-		// .post(url, this.client, options)
-		// .map(response => response.json())
-		// .subscribe(
-		// 	res => {
-		// 		console.log("GET request error: " + res);
-		// 	},
-		// 	err => {
-		// 		console.log("GET request error: " + err);
-    //
-		// 	},
-		// 	() => {}
-		// );
-
-
-
-
-
-
-		this.http.post(url, this.client, options).
-		map(response => response.json()).
-		subscribe((res) => {
-			console.log(res)
-			this.loaderService.displayLoader(false);
-			this.snackBar.dismiss()
-			this.router.navigate(["login"]);
-		},
-		(err) => {
-			this.loaderService.displayLoader(false);
-			if (err.json().code == 13)
-				this.snackBar.open("Votre date de naissance est incorrecte", "Ok");
-			else
-				this.snackBar.open("Un comtpe existe déjà avec cette adresse mail", "Ok");
-		},
-		() => {
-			//console.log(this.data)
-		})
+		this.create(this.client).subscribe(
+			success => {
+				this.loaderService.displayLoader(false);
+				this.router.navigate(["login"]);
+			},
+			error => {
+				this.loaderService.displayLoader(false);
+				this.snackBar.open(
+					"Un compte existe déjà avec cette adresse mail",
+					"Ok"
+				);
+			}
+		);
 	}
 
 	create(data): Observable<Client> {
@@ -89,9 +55,9 @@ export class SignupComponent implements OnInit {
 		let headers = new Headers({ "Content-Type": "application/json" });
 		let options = new RequestOptions({ headers: headers });
 		return this.http
-		.post(url, data, options)
-		.map(this.extractData)
-		.catch(this.handleError);
+			.post(url, data, options)
+			.map(this.extractData)
+			.catch(this.handleError);
 	}
 
 	private extractData(res: Response) {
@@ -100,12 +66,12 @@ export class SignupComponent implements OnInit {
 	}
 
 	private handleError(error: Response | any) {
+		this.loaderService.displayLoader(true);
 		let errMsg;
 		if (error instanceof Response) {
 			const body = error.json() || "";
-			//console.log(body.code);
-			errMsg = body.code;
-			this.error = body.code
+			console.log(body);
+			errMsg = body;
 		} else {
 			errMsg = error.message ? error.message : error.toString();
 		}
